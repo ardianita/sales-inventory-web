@@ -15,15 +15,15 @@ class SaleController extends Controller
      */
     public function index()
     {
-        $url_sales = "http://sales-inventory.test/api/sales";
+        $url_sales = config('app.guzzle_url') . "/sales";
         $sales = Http::get($url_sales);
 
         // dd($sales['sales']['customer']);
 
-        $url_items = "http://sales-inventory.test/api/items";
+        $url_items = config('app.guzzle_url') . "/items";
         $items = Http::get($url_items);
 
-        $url_customers = "http://sales-inventory.test/api/customers";
+        $url_customers = config('app.guzzle_url') . "/customers";
         $customers = Http::get($url_customers);
 
         return view('sales.index', [
@@ -40,10 +40,10 @@ class SaleController extends Controller
      */
     public function create()
     {
-        $url_customer = "http://sales-inventory.test/api/customers";
+        $url_customer = config('app.guzzle_url') . "/customers";
         $customers = Http::get($url_customer);
 
-        $url_item = "http://sales-inventory.test/api/items";
+        $url_item = config('app.guzzle_url') . "/items";
         $items = Http::get($url_item);
 
         return view('sales.create', [
@@ -60,7 +60,7 @@ class SaleController extends Controller
      */
     public function store(Request $request)
     {
-        $url = "http://sales-inventory.test/api/sales";
+        $url = config('app.guzzle_url') . "/sales";
         $response = Http::post($url, [
             'customer_id'   => $request->customer_id,
             'date'          => $request->date,
@@ -83,7 +83,7 @@ class SaleController extends Controller
      */
     public function show($id_sale)
     {
-        $url = 'http://sales-inventory.test/api/sales/' . $id_sale;
+        $url = config('app.guzzle_url') . '/sales/' . $id_sale;
         $sale = Http::get($url);
 
         // dd(['sale']['id_sale']);
@@ -102,15 +102,15 @@ class SaleController extends Controller
     public function edit($id_sale)
     {
 
-        $url_sale = "http://sales-inventory.test/api/sales/" . $id_sale;
+        $url_sale = config('app.guzzle_url') . "/sales/" . $id_sale;
         $sales = Http::get($url_sale);
 
         // dd($sales['sale']['item_sale'][0]['qty']);
 
-        $url_customer = "http://sales-inventory.test/api/customers";
+        $url_customer = config('app.guzzle_url') . "/customers";
         $customers = Http::get($url_customer);
 
-        $url_item = "http://sales-inventory.test/api/items";
+        $url_item = config('app.guzzle_url') . "/items";
         $items = Http::get($url_item);
 
         return view('sales.edit', [
@@ -129,7 +129,7 @@ class SaleController extends Controller
      */
     public function update(Request $request, $id_sale)
     {
-        $url = "http://sales-inventory.test/api/sales/" . $id_sale;
+        $url = config('app.guzzle_url') . "/sales/" . $id_sale;
         $response = Http::patch($url, [
             'customer_id'   => $request->customer_id,
             'date'          => $request->date,
@@ -150,7 +150,7 @@ class SaleController extends Controller
      */
     public function destroy($id_sale)
     {
-        $url = "http://sales-inventory.test/api/sales/" . $id_sale;
+        $url = config('app.guzzle_url') . "/sales/" . $id_sale;
         $response = Http::delete($url);
 
         return redirect()->route('sale.index', [
