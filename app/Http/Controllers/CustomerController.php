@@ -23,8 +23,9 @@ class CustomerController extends Controller
             'domicile' => $request->domicile,
             'gender'  => $request->gender,
         ]);
-        return redirect()->route('customer.index', [
+        return redirect()->route('customer.show', [
             'response' => $response,
+            'id_customer' => $response['customer']['id_customer'],
             'active' => 'Customer',
         ]);
     }

@@ -10,6 +10,8 @@
     <div class="col-lg-12 margin-tb">
         <div class="text-center">
             <h1>Customer List</h1>
+            <a href="{{ route('customer.create') }}" class="btn btn-dark px-3"
+                style="width: auto; background-color: #6493AE; border-color: #6493AE">Add Customer</a>
         </div>
     </div>
 </div>
