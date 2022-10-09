@@ -10,9 +10,7 @@ class CustomerController extends Controller
 
     public function create()
     {
-        return view('customer.create', [
-            'active' => 'Customer',
-        ]);
+        return view('customer.create');
     }
 
     public function store(Request $request)
@@ -26,7 +24,6 @@ class CustomerController extends Controller
         return redirect()->route('customer.show', [
             'response' => $response,
             'id_customer' => $response['customer']['id_customer'],
-            'active' => 'Customer',
         ]);
     }
 
@@ -37,7 +34,6 @@ class CustomerController extends Controller
 
         return view('customer.edit', [
             'customer' => $customer['data'],
-            'active' => 'Customer',
         ]);
     }
 
@@ -49,9 +45,9 @@ class CustomerController extends Controller
             'domicile' => $request->domicile,
             'gender'  => $request->gender,
         ]);
-        return redirect()->route('customer.index', [
+        return redirect()->route('customer.show', [
             'response' => $response,
-            'active' => 'Customer',
+            'id_customer' => $response['customer']['id_customer'],
         ]);
     }
 
@@ -62,7 +58,6 @@ class CustomerController extends Controller
 
         return view('customer.show', [
             'customer' => $customer['data'],
-            'active' => 'Customer',
         ]);
     }
 
@@ -72,7 +67,6 @@ class CustomerController extends Controller
         $customers = Http::get($url);
         return view('customer.index', [
             'customers' => $customers,
-            'active' => 'Customer',
         ]);
     }
 
@@ -82,7 +76,6 @@ class CustomerController extends Controller
         $delete = Http::delete($url);
         return redirect()->route('customer.index', [
             'delete' => $delete,
-            'active' => 'Customer',
         ]);
     }
 }
