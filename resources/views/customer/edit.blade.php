@@ -1,14 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- success notification --}}
-    @if (session()->has('success-update-profile'))
-        <div class="alert alert-success alert-dismissible fade show" role="alert">
-            {{ session('success-update-profile') }}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>
-    @endif
-
     <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-md-8">

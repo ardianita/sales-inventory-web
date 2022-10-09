@@ -1,7 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-    {{-- start cards --}}
+
+    {{-- create success notification --}}
+    @if (session()->has('success-create-customer'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success-create-customer') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
+    {{-- update success notification --}}
+    @if (session()->has('success-update-customer'))
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            {{ session('success-update-customer') }}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+
     <h1 class="text-center">Customer Detail</h1>
     <div class="container">
         <div class="d-flex align-content-center justify-content-center flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 ">

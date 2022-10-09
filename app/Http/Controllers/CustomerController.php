@@ -24,7 +24,7 @@ class CustomerController extends Controller
         return redirect()->route('customer.show', [
             'response' => $response,
             'id_customer' => $response['customer']['id_customer'],
-        ]);
+        ])->with('success-create-customer', 'Customer successfully created!');
     }
 
     public function edit($id_customer)
@@ -48,7 +48,7 @@ class CustomerController extends Controller
         return redirect()->route('customer.show', [
             'response' => $response,
             'id_customer' => $response['customer']['id_customer'],
-        ]);
+        ])->with('success-update-customer', 'Customer successfully updated!');
     }
 
     public function show($id_customer)
