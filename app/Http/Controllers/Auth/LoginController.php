@@ -28,6 +28,13 @@ class LoginController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    public function index()
+    {
+        return view('auth.login', [
+            'active' => 'Login',
+        ]);
+    }
+
     /**
      * Create a new controller instance.
      *
