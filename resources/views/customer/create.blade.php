@@ -12,24 +12,23 @@
     <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <h1 class="mb-3" style="font-weight: 700;">
-                    <h1>Create Customer</h1>
-                </h1>
-
-                <div class="card">
+                <div class="card shadow p-3 mb-5 rounded" style="background-color: #F6F1EA; border-width:thin">
+                    <div class="card-title text-center mt-3">
+                        <h1 style="font-weight: bold; color: #5D7487">Create Customer</h1>
+                    </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('customer.store') }}">
                             @csrf
                             @method('POST')
 
-                            <div class="d-flex flex-column mb-3 mx-5">
+                            <div class="row mb-3 mx-3">
 
                                 {{-- name --}}
-                                <div class="p-2">
-                                    <label for="name">Name</label>
+                                <div class="col">
+                                    <label class="form-label" for="name">Name</label>
                                     <input id="name" type="text"
-                                        class="form-control @error('name') is-invalid @enderror" name="name"
-                                        value="" autofocus>
+                                        class="form-control form-control-lg @error('name') is-invalid @enderror" name="name"
+                                        autofocus required>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -40,13 +39,13 @@
                             </div>
 
 
-                            <div class="d-flex flex-column mb-3 mx-5">
+                            <div class="row mb-5 mx-3">
                                 {{-- domicile --}}
-                                <div class="p-2">
-                                    <label for="domicile">Domicile</label>
+                                <div class="col">
+                                    <label class="form-label" for="domicile">Domicile</label>
                                     <input id="domicile" type="text"
-                                        class="form-control @error('domicile') is-invalid @enderror" name="domicile"
-                                        value="" autofocus>
+                                        class="form-control form-control-lg @error('domicile') is-invalid @enderror" name="domicile"
+                                        autofocus required>
 
                                     @error('domicile')
                                         <span class="invalid-feedback" role="alert">
@@ -56,11 +55,12 @@
                                 </div>
 
                                 {{-- gender --}}
-                                <div class="p-2">
-                                    <label for="gender">Gender</label>
-                                    <input id="gender" type="text"
-                                        class="form-control @error('gender') is-invalid @enderror" name="gender"
-                                        value="" autofocus>
+                                <div class="col">
+                                    <label class="form-label" for="gender">Gender</label>
+                                    <select class="form-select form-select-lg" name="gender" id="gender" required>
+                                        <option value="pria">Pria</option>
+                                        <option value="wanita">Wanita</option>
+                                      </select>
 
                                     @error('gender')
                                         <span class="invalid-feedback" role="alert">
@@ -68,14 +68,14 @@
                                         </span>
                                     @enderror
                                 </div>
+
+
                             </div>
 
                             {{-- button --}}
-                            <div class="row mb-3 mx-5 float-end">
-                                <div class="col-md">
-                                    <button type="submit" class="btn btn-primary"
-                                        style="width: 12rem; height:2.5rem; background-color: #5DAAC4; border-color:#5DAAC4;">Save</button>
-                                </div>
+                            <div class="col-md text-center">
+                                <button type="submit" class="btn btn-primary"
+                                    style="width: 12rem; height:3rem; background-color: #5D7487; border-color:#5D7487; border-radius:10px">Submit</button>
                             </div>
                         </form>
                     </div>
