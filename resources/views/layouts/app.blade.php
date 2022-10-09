@@ -18,8 +18,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 
     <!-- CSS only -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -29,68 +28,60 @@
     <div id="app">
         @auth
 
-            <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color: #242F40">
-                <div class="container">
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        Sales Inventory
-                    </a>
-                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                        data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
+        <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color: #242F40">
+            <div class="container">
+                <a class="navbar-brand" href="{{ url('/') }}">
+                    Sales Inventory
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
 
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                        {{-- start ul navbar --}}
-                        <ul class="navbar-nav me-auto m-2 mx-auto">
-                            <li class="nav-item">
-                                <a class="nav-link" aria-current="page"
-                                    href="{{ route('home') }}">
-                                    <i class='bx bx-home-alt me-1'></i>Home</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link"
-                                    href="#">
-                                    <i class='bx bx-user me-1'></i>Items</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link"
-                                    href="#">
-                                    <i class='bx bx-category-alt me-1'></i>Sales</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link"
-                                    href="{{ route('customer.index') }}"><i class='bx bx-microphone me-1'></i>Customers</a>
-                            </li>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    {{-- start ul navbar --}}
+                    <ul class="navbar-nav me-auto m-2 mx-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" aria-current="page" href="{{ route('home') }}">
+                                <i class='bx bx-home-alt me-1'></i>Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class='bx bx-user me-1'></i>Items</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('sale.index') }}">
+                                <i class='bx bx-category-alt me-1'></i>Sales</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('customer.index') }}"><i class='bx bx-microphone me-1'></i>Customers</a>
+                        </li>
 
-                        </ul>
-                        {{-- end ul navbar --}}
+                    </ul>
+                    {{-- end ul navbar --}}
 
-                        <!-- Right Side Of Navbar -->
-                        <ul class="navbar-nav">
+                    <!-- Right Side Of Navbar -->
+                    <ul class="navbar-nav">
 
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                    data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                    {{ Auth::user()->name }}
+                        <li class="nav-item dropdown">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                {{ Auth::user()->name }}
+                            </a>
+
+                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    <span>{{ __('Logout') }}</span>
                                 </a>
 
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                        <i class="bi bi-box-arrow-right"></i>
-                                        <span>{{ __('Logout') }}</span>
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                    @csrf
+                                </form>
+                            </div>
+                        </li>
+                    </ul>
                 </div>
-            </nav>
+            </div>
+        </nav>
         @endauth
 
         <main class="py-4">
