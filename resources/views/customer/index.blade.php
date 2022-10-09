@@ -43,27 +43,48 @@
                                             style="width: 5rem; margin-bottom: 10px; margin-left: 10px">Edit</a>
                                     </div>
                                     <div class="col">
-                                        <form id="delete-cust" action="{{ route('customer.destroy', $customer['id_customer']) }}" method="POST">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="btn btn-danger"
-                                                style="width: 5rem; margin-bottom: 10px; margin-left: 10px">Delete</button>
-                                        </form>
+                                        <button type="button" class="btn btn-danger" style="width: 5rem" data-bs-toggle="modal"
+                                            data-bs-target="#modalDelete{{$customer['id_customer']}}">Delete
+                                        </button>
                                     </div>
                                 </div>
                             </div>
                         </div>
-
-                        {{-- <div style="position: absolute; bottom: 0" class="mb-2"> <strong>
-                                <hi>Gender : {{ $customer->gender }}
-                            </strong></hi>
-                        </div> --}}
                     </div>
                 </div>
             </a>
         </div>
+
+        {{-- modal delete --}}
+        <div class="modal fade" id="modalDelete{{$customer['id_customer']}}" tabindex="-1" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header border-0">
+                        <strong class="modal-title">Customer Delete Confirmation</strong>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body text-center p-3" style="font-size: 18px">
+                        <span>This action can not be undone. Are you sure you want to delete </span>
+                        <span><strong>{{$customer['name']}}</strong>?</span>
+                    </div>
+
+                    <div class="modal-footer border-0 mx-auto">
+                            <button type="button" class="btn" style="border-color: #D14F47; color: #D14F47;" data-bs-dismiss="modal">Cancel</button>
+
+                            <form action="{{ route('customer.destroy', $customer['id_customer']) }}" method="POST"
+                            class="d-inline-block">
+                            @csrf
+                            @method('DELETE')
+                            <button type="submit" class="btn btn-danger">Delete</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
         @endforeach
     </div>
 </div>
+
 
 @endsection
