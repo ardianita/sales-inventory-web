@@ -212,4 +212,6 @@ return [
         // 'ExampleClass' => App\Example\ExampleClass::class,
     ])->toArray(),
 
+    'guzzle_url' => env('GUZZLE_URL'),
+
 ];
