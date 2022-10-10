@@ -1,90 +1,91 @@
 @extends('layouts.app')
 
 @section('content')
-
-<style>
-
-
-</style>
-<div class="row mb-3">
-    <div class="col-lg-12 margin-tb">
-        <div class="text-center">
-            <h1>Customer List</h1>
-            <a href="{{ route('customer.create') }}" class="btn btn-dark px-3"
-                style="width: auto; background-color: #6493AE; border-color: #6493AE">Add Customer</a>
-        </div>
+<div class="container">
+    {{-- create success notification --}}
+    @if (session()->has('success-create-customer'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success-create-customer') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
-</div>
+    @endif
 
+    {{-- update success notification --}}
+    @if (session()->has('success-update-customer'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success-update-customer') }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    @endif
 
-
-<div class="container-fluid mb-5" style="margin-bottom: 150px !important">
-    <div class="row mr-4">
-        @foreach ($customers['data'] as $customer)
-
-        <div class="col-xl-3 col-md-6 mb-4 hvr-grow ">
-                <div class="card shadow  py-0 rounded-lg ">
-                    <div class="card-body py-2 px-2">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class=" font-weight-bold mt- 2 text-primary text-center text-uppercase mb-1">
-                                    {{ $customer['name'] }}
+    <div class="card">
+        <div class="card-body m-5 text-center">
+            <h1>Customer List</h1>
+            <a href="{{ route('customer.create') }}" class="btn btn-dark px-3 mb-5 border-0" style="width: auto; background-color: #242F40">Add Customer</a>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Name</th>
+                        <th>Domicile</th>
+                        <th>Gender</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @forelse ($customers['data'] as $customer)
+                    <tr>
+                        <th>{{ $customer['id_customer'] }}</th>
+                        <th>{{ $customer['name'] }}</th>
+                        <th>{{ $customer['domicile'] }}</th>
+                        <th>{{ $customer['gender'] }}</th>
+                        <th>
+                            <div class="row justify-content-center">
+                                <div class="col-md-2">
+                                    <a class="btn btn-primary btn-sm text-uppercase" style="width: 5rem" href="{{ route('customer.show', $customer['id_customer']) }}">detail</a>
                                 </div>
-                                <div class="h6 mb-0 text-gray-800 text-center">{{ $customer['domicile'] }}</div>
-                                <div class="h6 mb-0 text-gray-800 text-center">{{ $customer['gender'] }}</div>
+                                <div class="col-md-2">
+                                    <a class="btn btn-warning btn-sm text-uppercase" style="width: 5rem" href="{{ route('customer.edit', $customer['id_customer']) }}">Update</a>
+                                </div>
+                                <div class="col-md-2">
+                                    <a class="btn btn-danger btn-sm text-uppercase" style="width: 5rem" data-bs-toggle="modal" data-bs-target="#modalDelete{{$customer['id_customer']}}">Delete</a>
+                                </div>
+                            </div>
+                        </th>
+                    </tr>
 
-                                <div class="row justify-content-between">
-                                    <div class="col">
-                                        <a href="{{ route('customer.show', $customer['id_customer']) }}" class="btn btn-primary"
-                                            style="width: 5rem; margin-bottom: 10px; margin-left: 10px">Detail</a>
-                                    </div>
-                                    <div class="col">
-                                        <a href="{{ route('customer.edit', $customer['id_customer']) }}" class="btn btn-warning"
-                                            style="width: 5rem; margin-bottom: 10px; margin-left: 10px">Edit</a>
-                                    </div>
-                                    <div class="col">
-                                        <button type="button" class="btn btn-danger" style="width: 5rem" data-bs-toggle="modal"
-                                            data-bs-target="#modalDelete{{$customer['id_customer']}}">Delete
-                                        </button>
-                                    </div>
+                    <div class="modal fade" id="modalDelete{{$customer['id_customer']}}" tabindex="-1" aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header border-0">
+                                    <strong class="modal-title">Customer Delete Confirmation</strong>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body text-center p-3" style="font-size: 18px">
+                                    <span>Are you sure you want to delete </span>
+                                    <span><strong>{{$customer['name']}}</strong>?</span>
+                                </div>
+
+                                <div class="modal-footer border-0 mx-auto">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                                    <form action="{{ route('customer.destroy', $customer['id_customer']) }}" method="POST" class="d-inline-block">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
-            </a>
+                    @empty
+                    <tr>
+                        <th colspan="5">No Customer.</th>
+                    </tr>
+                    @endforelse
+                </tbody>
+            </table>
         </div>
-
-        {{-- modal delete --}}
-        <div class="modal fade" id="modalDelete{{$customer['id_customer']}}" tabindex="-1" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header border-0">
-                        <strong class="modal-title">Customer Delete Confirmation</strong>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                            aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body text-center p-3" style="font-size: 18px">
-                        <span>This action can not be undone. Are you sure you want to delete </span>
-                        <span><strong>{{$customer['name']}}</strong>?</span>
-                    </div>
-
-                    <div class="modal-footer border-0 mx-auto">
-                            <button type="button" class="btn" style="border-color: #D14F47; color: #D14F47;" data-bs-dismiss="modal">Cancel</button>
-
-                            <form action="{{ route('customer.destroy', $customer['id_customer']) }}" method="POST"
-                            class="d-inline-block">
-                            @csrf
-                            @method('DELETE')
-                            <button type="submit" class="btn btn-danger">Delete</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-        @endforeach
     </div>
 </div>
-
 
 @endsection

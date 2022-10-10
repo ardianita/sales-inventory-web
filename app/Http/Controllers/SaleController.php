@@ -58,7 +58,7 @@ class SaleController extends Controller
             'date'          => $request->date,
             'qty'           => $request->qty,
             'item_id'       => $request->item_id
-        ]);
+        ])->with('message', 'Sale successfully created!');
 
         // return $response;
 
@@ -131,7 +131,7 @@ class SaleController extends Controller
 
         return redirect()->route('sale.index', [
             'response'  => $response
-        ]);
+        ])->with('message', 'Sale successfully updated!');
     }
 
     /**
@@ -147,6 +147,6 @@ class SaleController extends Controller
 
         return redirect()->route('sale.index', [
             'response'  => $response
-        ]);
+        ])->with('message', 'Sale has been deleted!');
     }
 }

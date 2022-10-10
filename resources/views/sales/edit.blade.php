@@ -5,9 +5,11 @@
     <form action="{{ route('sale.update', $sales['id_sale']) }}" method="post">
         @csrf
         @method('PATCH')
-        <div class="card">
-            <div class="card-body my-5">
-                <h1 class="text-center fw-bold" style="color: #5D7487;">Update Sale</h1>
+        <div class="card shadow border-1 rounded mt-5" style="background-color: #F6F1EA;">
+            <div class="card-title text-center mt-5">
+                <h1 style="font-weight: bold; color: #5D7487">Edit Sale</h1>
+            </div>
+            <div class="card-body mx-4 mb-4">
                 <input type="hidden" name="id_sale">
                 <div class="row mb-3 mx-5">
                     <label>Customer</label>
@@ -69,8 +71,7 @@
                 </div>
                 <div class="row mb-3 mx-5 float-end">
                     <div class="col-md">
-                        <form><input type="button" value="Cancel" onclick="history.back()" class="btn btn-danger"></form>
-                        <button type="submit" class="btn btn-light border-0 text-white" style="background-color:#5D7487;">Submit</button>
+                        <button type="submit" class="btn btn-dark border-0" style="width: 12rem; height:3rem; background-color: #5D7487; border-radius:10px">Update</button>
                     </div>
                 </div>
             </div>

@@ -1,40 +1,53 @@
 @extends('layouts.app')
 
 @section('content')
-<h1 class="text-center">Sale Detail</h1>
 <div class="container">
     <div class="d-flex align-content-center justify-content-center flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 ">
-        <div class="shadow rounded mt-3 col-md-8">
+        <div class="shadow rounded mt-3 col-md-5">
             <div class="card">
-                <div class="card-body mb-3 px-3 py-4">
-                    <div class="row my-1">
-                        <div class="col-md-4 mx-5 text-center">ID</div>
-                        <div class="col-md-6 ">{{ $sale['id_sale'] }}</div>
+                <div class="card-body mx-3 my-5">
+                    <h1 class="text-center mb-4">Detail</h1>
+                    <div class="row my-1 mx-5">
+                        <div class="col-md text-end">ID</div>
+                        <div class="col-md">
+                            <input value="{{ $sale['id_sale'] }}" disabled>
+                        </div>
                     </div>
-                    <div class="row my-1">
-                        <div class="col-md-4 mx-5 text-center">Customer</div>
-                        <div class="col-md-6">{{ $sale['customer']['name'] }}</div>
+                    <div class="row my-1 mx-5">
+                        <div class="col-md text-end">Customer</div>
+                        <div class="col-md">
+                            <input value="{{ $sale['customer']['name'] }}" disabled>
+
+                        </div>
                     </div>
-                    <div class="row my-1">
-                        <div class="col-md-4 mx-5 text-center">Date</div>
-                        <div class="col-md-6">{{ $sale['date'] }}</div>
+                    <div class="row my-1 mx-5">
+                        <div class="col-md text-end">Date</div>
+                        <div class="col-md">
+                            <input value="{{ $sale['date'] }}" disabled>
+                        </div>
                     </div>
-                    <div class="row my-1">
-                        <div class="col-md-4 mx-5 text-center">Item</div>
-                        <div class="col-md-6">{{ $sale['item_sale'][0]['item_id'] }}</div>
+                    <div class="row my-1 mx-5">
+                        <div class="col-md text-end">Item</div>
+                        <div class="col-md">
+                            <input value="{{ $sale['item_sale'][0]['item_id']  }}" disabled>
+                        </div>
                     </div>
-                    <div class="row my-1">
-                        <div class="col-md-4 mx-5 text-center">Qty</div>
-                        <div class="col-md-6">{{ $sale['item_sale'][0]['qty'] }}</div>
+                    <div class="row my-1 mx-5">
+                        <div class="col-md text-end">Qty</div>
+                        <div class="col-md">
+                            <input value="{{ $sale['item_sale'][0]['qty'] }}" disabled>
+                        </div>
                     </div>
-                    <div class="row my-1">
-                        <div class="col-md-4 mx-5 text-center">Total</div>
-                        <div class="col-md-6">{{ $sale['subtotal'] }}</div>
+                    <div class="row my-1 mx-5">
+                        <div class="col-md text-end">Total</div>
+                        <div class="col-md">
+                            <input value="{{ $sale['subtotal'] }}" disabled>
+                        </div>
                     </div>
-                    <div class="row my-1">
-                        <div class="col-md-3">
+                    <div class="row mt-2 mx-5 float-end">
+                        <div class="col-md">
                             <form>
-                                <input type="button" value="Back" onclick="history.back()" class="btn btn-primary mb-2 ">
+                                <input type="button" value="Back" onclick="history.back()" class="btn btn-sm btn-dark px-3 mb-5 border-0" style="width: 5rem; background-color: #242F40">
                             </form>
                         </div>
                     </div>
