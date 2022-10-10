@@ -23,8 +23,7 @@ class CustomerController extends Controller
         ]);
         return redirect()->route('customer.index', [
             'response' => $response,
-            'id_customer' => $response['customer']['id_customer'],
-        ])->with('success-create-customer', 'Customer successfully created!');
+        ])->with('message', 'Customer successfully created!');
     }
 
     public function edit($id_customer)
@@ -47,8 +46,7 @@ class CustomerController extends Controller
         ]);
         return redirect()->route('customer.index', [
             'response' => $response,
-            'id_customer' => $response['customer']['id_customer'],
-        ])->with('success-update-customer', 'Customer successfully updated!');
+        ])->with('message', 'Customer successfully updated!');
     }
 
     public function show($id_customer)
@@ -76,6 +74,6 @@ class CustomerController extends Controller
         $delete = Http::delete($url);
         return redirect()->route('customer.index', [
             'delete' => $delete,
-        ]);
+        ])->with('message', 'Customer has been deleted!');
     }
 }
