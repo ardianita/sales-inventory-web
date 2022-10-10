@@ -20,16 +20,8 @@ class SaleController extends Controller
 
         // dd($sales['sales']['customer']);
 
-        $url_items = config('app.guzzle_url') . "/items";
-        $items = Http::get($url_items);
-
-        $url_customers = config('app.guzzle_url') . "/customers";
-        $customers = Http::get($url_customers);
-
         return view('sales.index', [
             'sales' => $sales,
-            'items' => $items,
-            'customers' => $customers,
         ]);
     }
 
