@@ -21,7 +21,7 @@ class CustomerController extends Controller
             'domicile' => $request->domicile,
             'gender'  => $request->gender,
         ]);
-        return redirect()->route('customer.show', [
+        return redirect()->route('customer.index', [
             'response' => $response,
             'id_customer' => $response['customer']['id_customer'],
         ])->with('success-create-customer', 'Customer successfully created!');
@@ -45,7 +45,7 @@ class CustomerController extends Controller
             'domicile' => $request->domicile,
             'gender'  => $request->gender,
         ]);
-        return redirect()->route('customer.show', [
+        return redirect()->route('customer.index', [
             'response' => $response,
             'id_customer' => $response['customer']['id_customer'],
         ])->with('success-update-customer', 'Customer successfully updated!');

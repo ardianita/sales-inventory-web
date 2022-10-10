@@ -4,12 +4,14 @@
 <div class="container">
     <form action="{{ route('sale.store') }}" method="post">
         @csrf
-        <div class="card">
-            <div class="card-body my-5">
-                <h1 class="text-center fw-bold" style="color: #5D7487;">Create Sale</h1>
+        <div class="card shadow rounded border-1 mt-4" style="background-color: #F6F1EA;">
+            <div class="card-title text-center mt-5">
+                <h1 style="font-weight: bold; color: #5D7487">Create Sale</h1>
+            </div>
+            <div class="card-body mx-4 mb-4">
                 <div class="row mb-3 mx-5">
-                    <label>Customer</label>
                     <div class="col-md">
+                        <label class="form-label">Customer</label>
                         <select name="customer_id" class="form-select" required>
                             <option selected>--- SELECT CUSTOMER ---</option>
                             @foreach ($customers['data'] as $customer)
@@ -26,8 +28,8 @@
                     </div>
                 </div>
                 <div class="row mb-3 mx-5">
-                    <label>Date</label>
                     <div class="col-md">
+                        <label class="form-label">Date</label>
                         <input type="date" class="form-control @error('date') is-invalid @enderror" name="date" value="{{ old('date') }}" required>
 
                         @error('date')
@@ -39,7 +41,7 @@
                 </div>
                 <div class="row mb-3 mx-5">
                     <div class="col-md-6">
-                        <label>Item</label>
+                        <label class="form-label">Item</label>
                         <select name="item_id" class="form-select" required>
                             <option selected>--- SELECT ITEM ---</option>
                             @foreach ($items['items'] as $item)
@@ -55,7 +57,7 @@
                         @enderror
                     </div>
                     <div class="col-md-6">
-                        <label>Qty</label>
+                        <label class="form-label">Qty</label>
                         <input type="text" class="form-control @error('qty') is-invalid @enderror" name="qty" value="{{ old('qty') }}" required>
 
                         @error('qty')
@@ -67,8 +69,7 @@
                 </div>
                 <div class="row mb-3 mx-5 float-end">
                     <div class="col-md">
-                        <form><input type="button" value="Cancel" onclick="history.back()" class="btn btn-danger"></form>
-                        <button type="submit" class="btn btn-light border-0 text-white" style="background-color:#5D7487;">Submit</button>
+                        <button type="submit" class="btn btn-primary border-0" style="width: 12rem; height:3rem; background-color: #5D7487; border-radius:10px">Submit</button>
                     </div>
                 </div>
             </div>
