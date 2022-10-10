@@ -33,12 +33,12 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($customers['data'] as $customer)
+                    @forelse ($customers['customers'] as $customer)
                     <tr>
                         <th>{{ $customer['id_customer'] }}</th>
                         <th>{{ $customer['name'] }}</th>
                         <th>{{ $customer['domicile'] }}</th>
-                        <th>{{ $customer['gender'] }}</th>
+                        <th>{{ ucfirst($customer['gender']) }}</th>
                         <th>
                             <div class="row justify-content-center">
                                 <div class="col-md-2">

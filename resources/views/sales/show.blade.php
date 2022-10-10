@@ -16,7 +16,7 @@
                     <div class="row my-1 mx-5">
                         <div class="col-md text-end">Customer</div>
                         <div class="col-md">
-                            <input value="{{ $sale['customer']['name'] }}" disabled>
+                            <input value="{{ $customer_name }}" disabled>
 
                         </div>
                     </div>
@@ -29,7 +29,7 @@
                     <div class="row my-1 mx-5">
                         <div class="col-md text-end">Item</div>
                         <div class="col-md">
-                            <input value="{{ $sale['item_sale'][0]['item_id']  }}" disabled>
+                            <input value="{{ $item_name  }}" disabled>
                         </div>
                     </div>
                     <div class="row my-1 mx-5">
