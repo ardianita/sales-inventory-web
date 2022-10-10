@@ -16,7 +16,7 @@
                     <div class="col-md">
                         <select name="customer_id" class="form-select">
                             <option selected>--- SELECT CUSTOMER ---</option>
-                            @foreach ($customers['data'] as $customer)
+                            @foreach ($customers['customers'] as $customer)
                             <option value="{{ $customer['id_customer'] }}" {{ ($sales['customer_id'] === $customer['id_customer']) ? 'selected' : '' }}>
                                 {{ $customer['name'] }}
                             </option>

@@ -2,25 +2,17 @@
 
 @section('content')
 <div class="container">
-    {{-- create success notification --}}
-    @if (session()->has('success-create-item'))
+    {{-- notification --}}
+    @if (session()->has('message'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success-create-item') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
-
-    {{-- update success notification --}}
-    @if (session()->has('success-update-item'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success-update-item') }}
+        {{ session('message') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif
 
     <div class="card">
         <div class="card-body m-5 text-center">
-            <h1>item List</h1>
+            <h1>Item List</h1>
             <a href="{{ route('item.create') }}" class="btn btn-dark px-3 mb-5 border-0" style="width: auto; background-color: #242F40">Add item</a>
             <table class="table table-hover">
                 <thead>

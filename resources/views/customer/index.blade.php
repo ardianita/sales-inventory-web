@@ -2,18 +2,10 @@
 
 @section('content')
 <div class="container">
-    {{-- create success notification --}}
-    @if (session()->has('success-create-customer'))
+    {{-- notification --}}
+    @if (session()->has('message'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success-create-customer') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
-
-    {{-- update success notification --}}
-    @if (session()->has('success-update-customer'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success-update-customer') }}
+        {{ session('message') }}
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
     @endif

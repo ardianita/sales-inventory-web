@@ -2,27 +2,11 @@
 
 @section('content')
 <div class="container">
-    {{-- create success notification --}}
-    @if (session()->has('success-create-item'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success-create-item') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
-
-    {{-- update success notification --}}
-    @if (session()->has('success-update-item'))
-    <div class="alert alert-success alert-dismissible fade show" role="alert">
-        {{ session('success-update-item') }}
-        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-    </div>
-    @endif
-
     <div class="d-flex align-content-center justify-content-center flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 ">
         <div class="shadow rounded mt-3 col-md-5">
             <div class="card">
                 <div class="card-body mx-3 my-5">
-                    <h1 class="text-center mb-4">Detail</h1>
+                    <h1 class="text-center mb-4">Item Detail</h1>
                     <div class="row my-1 mx-5">
                         <div class="col-md text-end">ID</div>
                         <div class="col-md">
