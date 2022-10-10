@@ -33,7 +33,7 @@ class CustomerController extends Controller
         $customer = Http::get($url);
 
         return view('customer.edit', [
-            'customer' => $customer['data'],
+            'customer' => $customer['customer'],
         ]);
     }
 
@@ -57,7 +57,7 @@ class CustomerController extends Controller
         $customer = Http::get($url);
 
         return view('customer.show', [
-            'customer' => $customer['data'],
+            'customer' => $customer['customer'],
         ]);
     }
 
