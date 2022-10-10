@@ -9,9 +9,9 @@
                         <h1 style="font-weight: bold; color: #5D7487">Create Items</h1>
                     </div>
                     <div class="card-body">
-                        <form method="POST" action="{{ route('item.update', $item['id_item']) }}">
+                        <form method="POST" action="{{ route('item.store') }}">
                             @csrf
-                            @method('PATCH')
+                            @method('POST')
 
                             <div class="row mb-3 mx-3">
 
@@ -20,7 +20,7 @@
                                     <label class="form-label" for="name">Name</label>
                                     <input id="name" type="text"
                                         class="form-control form-control-lg @error('name') is-invalid @enderror" name="name"
-                                        value="{{ $item['name'] }}" autofocus>
+                                        autofocus required>
 
                                     @error('name')
                                         <span class="invalid-feedback" role="alert">
@@ -31,13 +31,13 @@
                             </div>
 
 
-                            <div class="row mb-5 mx-3">
+                            <div class="row mx-3">
                                 {{-- category --}}
                                 <div class="col">
                                     <label class="form-label" for="category">Category</label>
                                     <input id="category" type="text"
                                         class="form-control form-control-lg @error('category') is-invalid @enderror" name="category"
-                                        value="{{ $item['category'] }}" autofocus>
+                                        autofocus required>
 
                                     @error('category')
                                         <span class="invalid-feedback" role="alert">
@@ -47,27 +47,26 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-5 mx-3">
-                                {{-- Price --}}
-                                <div class="col">
-                                    <label class="form-label" for="price">Price</label>
-                                    <input id="price" type="text"
-                                        class="form-control form-control-lg @error('price') is-invalid @enderror" name="price"
-                                        value="{{ $item['price'] }}" autofocus>
+                                <div class="row pb-5 mx-3">
+                                    {{-- price --}}
+                                    <div class="col">
+                                        <label class="form-label" for="price">Price</label>
+                                        <input id="price" type="text"
+                                            class="form-control form-control-lg @error('price') is-invalid @enderror" name="price"
+                                            autofocus required>
 
-                                    @error('price')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                                        @error('price')
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $message }}</strong>
+                                            </span>
+                                        @enderror
+                                    </div>
                             </div>
-
 
                             {{-- button --}}
                             <div class="col-md text-center">
                                 <button type="submit" class="btn btn-primary"
-                                    style="width: 12rem; height:3rem; background-color: #5D7487; border-color:#5D7487; border-radius:10px">Update</button>
+                                    style="width: 12rem; height:3rem; background-color: #5D7487; border-color:#5D7487; border-radius:10px">Submit</button>
                             </div>
                         </form>
                     </div>

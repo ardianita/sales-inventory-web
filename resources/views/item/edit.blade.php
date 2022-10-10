@@ -31,7 +31,7 @@
                             </div>
 
 
-                            <div class="row mb-5 mx-3">
+                            <div class="row  mx-3">
                                 {{-- category --}}
                                 <div class="col">
                                     <label class="form-label" for="category">Category</label>
@@ -47,20 +47,20 @@
                                 </div>
                             </div>
 
-                            <div class="row mb-5 mx-3">
-                                {{-- Price --}}
-                                <div class="col">
-                                    <label class="form-label" for="category">Price</label>
-                                    <input id="price" type="text"
-                                        class="form-control form-control-lg @error('price') is-invalid @enderror" name="price"
-                                        value="{{ $item['price'] }}" autofocus>
+                                <div class="row pb-5 mx-3">
+                               {{-- price --}}
+                               <div class="col">
+                                <label class="form-label" for="price">Price</label>
+                                <input id="price" type="text"
+                                    class="form-control form-control-lg @error('price') is-invalid @enderror" name="price"
+                                    value="{{ $item['price'] }}" autofocus>
 
-                                    @error('price')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                                @error('price')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                                 </div>
                             </div>
 
 

@@ -10,12 +10,9 @@ class ItemController extends Controller
 {
     public function index()
     {
-        $url_items = config('app.guzzle_url') . "/items";
-        $items = Http::get($url_items);
-
-        // dd($sales['sales']['customer']);
-
-        return view('items.index', [
+        $url = config('app.guzzle_url') . '/items';
+        $items = Http::get($url);
+        return view('item.index', [
             'items' => $items,
         ]);
     }
@@ -27,35 +24,33 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('items.create');
+        return view('item.create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \App\Http\Requests\StoreSaleRequest  $request
+     * @param  \App\Http\Requests\StoreItemRequest  $request
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        $url = config('app.guzzle_url') . "/sales";
+        $url = config('app.guzzle_url') . '/items';
         $response = Http::post($url, [
-            'name'   => $request->customer_id,
-            'category'          => $request->date,
-            'price'           => $request->qty,
-        ])->with('message', 'Sale successfully created!');
-
-        // return $response;
-
-        return redirect()->route('sale.index', [
-            'response'  => $response
+            'name'    => $request->name,
+            'category' => $request->category,
+            'price'  => $request->price,
         ]);
+        return redirect()->route('item.index', [
+            'response' => $response,
+            'id_item' => $response['item']['id_item'],
+        ])->with('success-create-item', 'Items successfully created!');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Sale  $sale
+     * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
     public function show($id_item)
@@ -63,9 +58,7 @@ class ItemController extends Controller
         $url = config('app.guzzle_url') . '/items/' . $id_item;
         $item = Http::get($url);
 
-        // dd(['sale']['id_sale']);
-
-        return view('items.show', [
+        return view('item.show', [
             'item' => $item['item'],
         ]);
     }
@@ -73,23 +66,23 @@ class ItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Sale  $sale
+     * @param  \App\Models\Item $item
      * @return \Illuminate\Http\Response
      */
     public function edit($id_item)
     {
         $url = config('app.guzzle_url') . '/items/' . $id_item;
-        $customer = Http::get($url);
+        $item = Http::get($url);
 
         return view('item.edit', [
-            'item' => $customer['data'],
+            'item' => $item['item'],
         ]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \App\Http\Requests\UpdateSaleRequest  $request
+     * @param  \App\Http\Requests\UpdateItemRequest  $request
      * @param  \App\Models\Sale  $sale
      * @return \Illuminate\Http\Response
      */
@@ -103,23 +96,22 @@ class ItemController extends Controller
         ]);
         return redirect()->route('item.index', [
             'response' => $response,
-            'id_item' => $response['item']['id_item'],
-        ])->with('success-update-item', 'Item successfully updated!');
+            // 'id_item' => $response['item']['id_item'],
+        ])->with('success-update-item', 'Items successfully updated!');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Sale  $sale
+     * @param  \App\Models\Item  $item
      * @return \Illuminate\Http\Response
      */
     public function destroy($id_item)
     {
-        $url = config('app.guzzle_url') . "/items/" . $id_item;
-        $response = Http::delete($url);
-
+        $url = config('app.guzzle_url') . '/items/' . $id_item;
+        $delete = Http::delete($url);
         return redirect()->route('item.index', [
-            'response'  => $response
-        ])->with('message', 'Item has been deleted!');
+            'delete' => $delete,
+        ]);
     }
 }
