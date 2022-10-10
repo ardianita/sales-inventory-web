@@ -1,121 +1,77 @@
+@extends('layouts.app')
+
 @section('content')
-    <div class="container mt-4" style="font-family: 'Open Sans'">
+    <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
-
-                <h1 class="mb-3" style="font-weight: 700;">Create Post</h1>
-                <form method="POST" action="{{ route('posts.store') }}" enctype="multipart/form-data">
-                    @csrf
-                    <div class="card">
-                        <div class="card-body">
-
-                            {{-- image --}}
-                            <div class="row mb-3 mx-5">
-                                <label for="image">Image</label>
-
-                                <div class="col-md">
-                                    <input id="image" type="file" accept="image/*"
-                                        class="form-control @error('image') is-invalid @enderror" name="image">
-
-                                    @error('image')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            {{-- title --}}
-                            <div class="row mb-3 mx-5">
-                                <label for="title">Title</label>
-
-                                <div class="col-md">
-                                    <input id="title" type="text"
-                                        class="form-control @error('title') is-invalid @enderror" name="title"
-                                        style="font-size: 30px; font-weight: bold;"
-                                        value="{{ old('title') }}" required autocomplete="title"
-                                        placeholder="Write your title..." autofocus>
-
-                                    @error('title')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            {{-- category --}}
-                            <div class="row mb-3 mx-5">
-                                <label for="category_id">Category</label>
-
-                                <div class="col-md">
-                                    <select name="category_id" id="category_id" class="form-select" required>
-                                        <option selected>--- SELECT CATEGORY ---</option>
-                                        @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">
-                                                {{ $category->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-
-                                    @error('category_id')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                            {{-- tag --}}
-                            <div class="row mb-3 mx-5">
-                                <label for="tags">Tags</label>
-
-                                <div class="col-md">
-                                    <select
-                                        class="form-select select2"
-                                        style="width: 100% !important"
-                                        name="tags[]" multiple="multiple" required>
-                                        @foreach ($tags as $tag)
-                                            <option value="{{ $tag->id }}">{{ $tag->name }}</option>
-                                        @endforeach
-                                    </select>
-                                </div>
-
-                                @error('tags')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
-
-                            {{-- content --}}
-                            <div class="row mb-3 mx-5">
-                                <label for="content">Content</label>
-
-                                <div class="col-md">
-                                    <textarea class="form-control" placeholder="Write your content..." id="content" name="content"></textarea>
-
-                                    @error('content')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
-                            </div>
-
-                        </div>
+                <div class="card shadow p-3 mb-5 rounded" style="background-color: #F6F1EA; border-width:thin">
+                    <div class="card-title text-center mt-3">
+                        <h1 style="font-weight: bold; color: #5D7487">Create Items</h1>
                     </div>
-                    {{-- button --}}
-                    <div class="row mt-4 float-end">
-                        <div class="col-md">
-                            <form><input type="button" value="Cancel" onclick="history.back()" class="btn"
-                                    style="width: 12rem; height:3rem; background-color: white; border-color:#4F6EAC; color:#4F6EAC">
-                            </form>
-                            <button type="submit" class="btn btn-primary"
-                                style="width: 12rem; height:3rem; background-color: #4F6EAC; border-color:#4F6EAC">Post</button>
-                        </div>
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('item.update', $item['id_item']) }}">
+                            @csrf
+                            @method('PATCH')
+
+                            <div class="row mb-3 mx-3">
+
+                                {{-- name --}}
+                                <div class="col">
+                                    <label class="form-label" for="name">Name</label>
+                                    <input id="name" type="text"
+                                        class="form-control form-control-lg @error('name') is-invalid @enderror" name="name"
+                                        value="{{ $item['name'] }}" autofocus>
+
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+
+                            <div class="row mb-5 mx-3">
+                                {{-- category --}}
+                                <div class="col">
+                                    <label class="form-label" for="category">Category</label>
+                                    <input id="category" type="text"
+                                        class="form-control form-control-lg @error('category') is-invalid @enderror" name="category"
+                                        value="{{ $item['category'] }}" autofocus>
+
+                                    @error('category')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-5 mx-3">
+                                {{-- Price --}}
+                                <div class="col">
+                                    <label class="form-label" for="price">Price</label>
+                                    <input id="price" type="text"
+                                        class="form-control form-control-lg @error('price') is-invalid @enderror" name="price"
+                                        value="{{ $item['price'] }}" autofocus>
+
+                                    @error('price')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+
+                            {{-- button --}}
+                            <div class="col-md text-center">
+                                <button type="submit" class="btn btn-primary"
+                                    style="width: 12rem; height:3rem; background-color: #5D7487; border-color:#5D7487; border-radius:10px">Update</button>
+                            </div>
+                        </form>
                     </div>
-                </form>
+                </div>
             </div>
         </div>
     </div>

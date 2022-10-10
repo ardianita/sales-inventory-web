@@ -38,7 +38,7 @@
                     <div class="row my-1 mx-5">
                         <div class="col-md text-end">Gender</div>
                         <div class="col-md">
-                            <input value="{{ $customer['gender'] }}" disabled>
+                            <input value="{{ ucfirst($customer['gender']) }}" disabled>
                         </div>
                     </div>
                     <div class="row my-1 mx-5">

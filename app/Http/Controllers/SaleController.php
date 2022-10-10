@@ -78,10 +78,19 @@ class SaleController extends Controller
         $url = config('app.guzzle_url') . '/sales/' . $id_sale;
         $sale = Http::get($url);
 
+        $id_item = $sale['sale']['item_sale'][0]['item_id'];
+        $url_item = config('app.guzzle_url') . '/items/' . $id_item;
+        $item_name = Http::get($url_item)['item']['name'];
+
+        $id_customer = $sale['sale']['customer_id'];
+        $url_customer = config('app.guzzle_url') . '/customers/' . $id_customer;
+        $customer_name = Http::get($url_customer)['customer']['name'];
         // dd(['sale']['id_sale']);
 
         return view('sales.show', [
             'sale' => $sale['sale'],
+            'item_name' => $item_name,
+            'customer_name' => $customer_name,
         ]);
     }
 
