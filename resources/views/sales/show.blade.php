@@ -6,7 +6,7 @@
         <div class="shadow rounded mt-3 col-md-5">
             <div class="card">
                 <div class="card-body mx-3 my-5">
-                    <h1 class="text-center mb-4">Detail</h1>
+                    <h1 class="text-center mb-4">Sale Detail</h1>
                     <div class="row my-1 mx-5">
                         <div class="col-md text-end">ID</div>
                         <div class="col-md">

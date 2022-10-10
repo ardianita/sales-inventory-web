@@ -43,8 +43,7 @@ class ItemController extends Controller
         ]);
         return redirect()->route('item.index', [
             'response' => $response,
-            'id_item' => $response['item']['id_item'],
-        ])->with('success-create-item', 'Items successfully created!');
+        ])->with('message', 'Items successfully created!');
     }
 
     /**
@@ -96,8 +95,7 @@ class ItemController extends Controller
         ]);
         return redirect()->route('item.index', [
             'response' => $response,
-            // 'id_item' => $response['item']['id_item'],
-        ])->with('success-update-item', 'Items successfully updated!');
+        ])->with('message', 'Items successfully updated!');
     }
 
     /**
@@ -112,6 +110,6 @@ class ItemController extends Controller
         $delete = Http::delete($url);
         return redirect()->route('item.index', [
             'delete' => $delete,
-        ]);
+        ])->with('message', 'Items has been deleted!');
     }
 }
