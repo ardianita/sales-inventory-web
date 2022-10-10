@@ -45,7 +45,7 @@
                                 <i class='bx bx-home-alt me-1'></i>Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('item.index') }}">
                                 <i class='bx bx-user me-1'></i>Items</a>
                         </li>
                         <li class="nav-item">
