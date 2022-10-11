@@ -4,6 +4,13 @@
     <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
+                {{-- notification --}}
+                @if (session()->has('message'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ session('message') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
                 <div class="card shadow p-3 mb-5 rounded" style="background-color: #F6F1EA; border-width:thin">
                     <div class="card-title text-center mt-3">
                         <h1 style="font-weight: bold; color: #5D7487">Create Items</h1>
@@ -51,7 +58,7 @@
                                     {{-- price --}}
                                     <div class="col">
                                         <label class="form-label" for="price">Price</label>
-                                        <input id="price" type="text"
+                                        <input id="price" type="number"
                                             class="form-control form-control-lg @error('price') is-invalid @enderror" name="price"
                                             autofocus required>
 

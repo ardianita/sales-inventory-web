@@ -36,11 +36,21 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         $url = config('app.guzzle_url') . '/items';
+
         $response = Http::post($url, [
             'name'    => $request->name,
             'category' => $request->category,
             'price'  => $request->price,
         ]);
+
+        if ($response->serverError()) {
+            return abort(500);
+        }
+
+        if ($response->clientError()) {
+            return redirect()->back()->with('message', $response->json()['message']);
+        }
+
         return redirect()->route('item.index', [
             'response' => $response,
         ])->with('message', 'Items successfully created!');
