@@ -58,13 +58,13 @@ class SaleController extends Controller
             'date'          => $request->date,
             'qty'           => $request->qty,
             'item_id'       => $request->item_id
-        ])->with('message', 'Sale successfully created!');
+        ]);
 
         // return $response;
 
         return redirect()->route('sale.index', [
             'response'  => $response
-        ]);
+        ])->with('message', 'Sale successfully created!');
     }
 
     /**

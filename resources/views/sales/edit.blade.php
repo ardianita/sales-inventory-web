@@ -59,8 +59,8 @@
                         @enderror
                     </div>
                     <div class="col-md-6">
-                        <label>Qty</label>
-                        <input type="text" class="form-control @error('qty') is-invalid @enderror" name="qty" value="{{ $sales['item_sale'][0]['qty'] }}" required>
+                        <label>Quantity</label>
+                        <input type="number" class="form-control @error('qty') is-invalid @enderror" name="qty" value="{{ $sales['item_sale'][0]['qty'] }}" required>
 
                         @error('qty')
                         <span class="invalid-feedback" role="alert">

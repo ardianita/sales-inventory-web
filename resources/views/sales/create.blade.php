@@ -14,7 +14,7 @@
                         <label class="form-label">Customer</label>
                         <select name="customer_id" class="form-select" required>
                             <option selected>--- SELECT CUSTOMER ---</option>
-                            @foreach ($customers['data'] as $customer)
+                            @foreach ($customers['customers'] as $customer)
                             <option value="{{ $customer['id_customer'] }}">
                                 {{ $customer['name'] }}
                             </option>
@@ -57,8 +57,8 @@
                         @enderror
                     </div>
                     <div class="col-md-6">
-                        <label class="form-label">Qty</label>
-                        <input type="text" class="form-control @error('qty') is-invalid @enderror" name="qty" value="{{ old('qty') }}" required>
+                        <label class="form-label">Quantity</label>
+                        <input type="number" class="form-control @error('qty') is-invalid @enderror" name="qty" value="{{ old('qty') }}" required>
 
                         @error('qty')
                         <span class="invalid-feedback" role="alert">

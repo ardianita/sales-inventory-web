@@ -51,7 +51,7 @@
                                {{-- price --}}
                                <div class="col">
                                 <label class="form-label" for="price">Price</label>
-                                <input id="price" type="text"
+                                <input id="price" type="number"
                                     class="form-control form-control-lg @error('price') is-invalid @enderror" name="price"
                                     value="{{ $item['price'] }}" autofocus>
 
