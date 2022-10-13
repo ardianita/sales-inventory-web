@@ -10,7 +10,7 @@
     </div>
     @endif
 
-    <div class="card">
+    <div class="card card shadow">
         <div class="card-body m-5 text-center">
             <h1>Customer List</h1>
             <a href="{{ route('customer.create') }}" class="btn btn-dark px-3 mb-5 border-0" style="width: auto; background-color: #242F40">Add Customer</a>

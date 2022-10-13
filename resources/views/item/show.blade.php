@@ -8,25 +8,25 @@
                 <div class="card-body mx-3 my-5">
                     <h1 class="text-center mb-4">Item Detail</h1>
                     <div class="row my-1 mx-5">
-                        <div class="col-md text-end">ID</div>
+                        <div class="col-md">ID</div>
                         <div class="col-md">
                             <input value="{{ $item['id_item'] }}" disabled>
                         </div>
                     </div>
                     <div class="row my-1 mx-5">
-                        <div class="col-md text-end">Name</div>
+                        <div class="col-md">Name</div>
                         <div class="col-md">
                             <input value="{{ $item['name'] }}" disabled>
                         </div>
                     </div>
                     <div class="row my-1 mx-5">
-                        <div class="col-md text-end">Category</div>
+                        <div class="col-md">Category</div>
                         <div class="col-md">
                             <input value="{{ $item['category'] }}" disabled>
                         </div>
                     </div>
                     <div class="row my-1 mx-5">
-                        <div class="col-md text-end">Price</div>
+                        <div class="col-md">Price</div>
                         <div class="col-md">
                             <input value="{{ $item['price'] }}" disabled>
                         </div>

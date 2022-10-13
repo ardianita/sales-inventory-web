@@ -5,14 +5,14 @@
     <form action="{{ route('sale.update', $sales['id_sale']) }}" method="post">
         @csrf
         @method('PATCH')
-        <div class="card shadow border-1 rounded mt-5" style="background-color: #F6F1EA;">
+        <div class="card shadow border-1 rounded mt-5" style="background-color: #242F40;">
             <div class="card-title text-center mt-5">
-                <h1 style="font-weight: bold; color: #5D7487">Edit Sale</h1>
+                <h1 style="font-weight: bold; color: #ECF2F0">Edit Sale</h1>
             </div>
             <div class="card-body mx-4 mb-4">
                 <input type="hidden" name="id_sale">
                 <div class="row mb-3 mx-5">
-                    <label>Customer</label>
+                    <label style="color :#ECF2F0" >Customer</label>
                     <div class="col-md">
                         <select name="customer_id" class="form-select">
                             <option selected>--- SELECT CUSTOMER ---</option>
@@ -30,7 +30,7 @@
                     </div>
                 </div>
                 <div class="row mb-3 mx-5">
-                    <label>Date</label>
+                    <label style="color :#ECF2F0" >Date</label>
                     <div class="col-md">
                         <input type="date" class="form-control @error('date') is-invalid @enderror" name="date" value="{{ $sales['date'] }}">
 
@@ -43,7 +43,7 @@
                 </div>
                 <div class="row mb-3 mx-5">
                     <div class="col-md-6">
-                        <label>Item</label>
+                        <label style="color :#ECF2F0" >Item</label>
                         <select name="item_id" class="form-select" required>
                             <option selected>--- SELECT ITEM ---</option>
                             @foreach ($items['items'] as $item)
