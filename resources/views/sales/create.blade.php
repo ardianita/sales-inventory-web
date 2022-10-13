@@ -4,14 +4,14 @@
 <div class="container">
     <form action="{{ route('sale.store') }}" method="post">
         @csrf
-        <div class="card shadow rounded border-1 mt-4" style="background-color: #F6F1EA;">
+        <div class="card shadow rounded border-1 mt-4" style="background-color: #242F40;">
             <div class="card-title text-center mt-5">
-                <h1 style="font-weight: bold; color: #5D7487">Create Sale</h1>
+                <h1 style="font-weight: bold; color: #ECF2F0">Create Sale</h1>
             </div>
             <div class="card-body mx-4 mb-4">
                 <div class="row mb-3 mx-5">
                     <div class="col-md">
-                        <label class="form-label">Customer</label>
+                        <label class="form-label" style="color :#ECF2F0">Customer</label>
                         <select name="customer_id" class="form-select" required>
                             <option selected>--- SELECT CUSTOMER ---</option>
                             @foreach ($customers['customers'] as $customer)
@@ -29,7 +29,7 @@
                 </div>
                 <div class="row mb-3 mx-5">
                     <div class="col-md">
-                        <label class="form-label">Date</label>
+                        <label class="form-label" style="color :#ECF2F0">Date</label>
                         <input type="date" class="form-control @error('date') is-invalid @enderror" name="date" value="{{ old('date') }}" required>
 
                         @error('date')
@@ -41,7 +41,7 @@
                 </div>
                 <div class="row mb-3 mx-5">
                     <div class="col-md-6">
-                        <label class="form-label">Item</label>
+                        <label class="form-label" style="color :#ECF2F0">Item</label>
                         <select name="item_id" class="form-select" required>
                             <option selected>--- SELECT ITEM ---</option>
                             @foreach ($items['items'] as $item)

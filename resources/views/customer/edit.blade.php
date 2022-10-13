@@ -4,9 +4,9 @@
     <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card shadow p-3 mb-5 rounded" style="background-color: #F6F1EA; border-width:thin">
+                <div class="card shadow p-3 mb-5 rounded" style="background-color: #242F40; border-width:thin">
                     <div class="card-title text-center mt-3">
-                        <h1 style="font-weight: bold; color: #5D7487">Edit Customer</h1>
+                        <h1 style="font-weight: bold; color: #ECF2F0">Edit Customer</h1>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('customer.update', $customer['id_customer']) }}">
@@ -17,7 +17,7 @@
 
                                 {{-- name --}}
                                 <div class="col">
-                                    <label class="form-label" for="name">Name</label>
+                                    <label class="form-label" style="color :#ECF2F0"  for="name">Name</label>
                                     <input id="name" type="text"
                                         class="form-control form-control-lg @error('name') is-invalid @enderror" name="name"
                                         value="{{ $customer['name'] }}" autofocus>
@@ -34,7 +34,7 @@
                             <div class="row mb-5 mx-3">
                                 {{-- domicile --}}
                                 <div class="col">
-                                    <label class="form-label" for="domicile">Domicile</label>
+                                    <label class="form-label" style="color :#ECF2F0"  for="domicile">Domicile</label>
                                     <input id="domicile" type="text"
                                         class="form-control form-control-lg @error('domicile') is-invalid @enderror" name="domicile"
                                         value="{{ $customer['domicile'] }}" autofocus>
@@ -48,7 +48,7 @@
 
                                 {{-- gender --}}
                                 <div class="col">
-                                    <label class="form-label" for="gender">Gender</label>
+                                    <label class="form-label" style="color :#ECF2F0"  for="gender">Gender</label>
                                     <select class="form-select form-select-lg" name="gender" id="gender" required>
                                         <option value="pria" {{ $customer['gender'] == 'pria' ? 'selected' : '' }}>Pria</option>
                                         <option value="wanita" {{ $customer['gender'] == 'wanita' ? 'selected' : '' }}>Wanita</option>

@@ -9,7 +9,7 @@
     </div>
     @endif
 
-    <div class="card text-center">
+    <div class="card text-center card shadow">
         <div class="card-body m-5">
             <h1>Sales List</h1>
             <a href="{{ route('sale.create') }}" class="btn btn-dark px-3 mb-5 border-0" style="width: auto; background-color: #242F40;">Add Sale</a>

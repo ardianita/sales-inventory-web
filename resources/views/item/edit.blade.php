@@ -4,9 +4,9 @@
     <div class="container mt-4">
         <div class="row justify-content-center">
             <div class="col-md-8">
-                <div class="card shadow p-3 mb-5 rounded" style="background-color: #F6F1EA; border-width:thin">
+                <div class="card shadow p-3 mb-5 rounded" style="background-color: #242F40; border-width:thin">
                     <div class="card-title text-center mt-3">
-                        <h1 style="font-weight: bold; color: #5D7487">Edit Items</h1>
+                        <h1 style="font-weight: bold; color: #ECF2F0">Edit Items</h1>
                     </div>
                     <div class="card-body">
                         <form method="POST" action="{{ route('item.update', $item['id_item']) }}">
@@ -17,7 +17,7 @@
 
                                 {{-- name --}}
                                 <div class="col">
-                                    <label class="form-label" for="name">Name</label>
+                                    <label class="form-label" style="color :#ECF2F0"  for="name">Name</label>
                                     <input id="name" type="text"
                                         class="form-control form-control-lg @error('name') is-invalid @enderror" name="name"
                                         value="{{ $item['name'] }}" autofocus>
@@ -31,10 +31,10 @@
                             </div>
 
 
-                            <div class="row  mx-3">
+                            <div class="row mb-3 mx-3">
                                 {{-- category --}}
                                 <div class="col">
-                                    <label class="form-label" for="category">Category</label>
+                                    <label class="form-label" style="color :#ECF2F0" for="category">Category</label>
                                     <input id="category" type="text"
                                         class="form-control form-control-lg @error('category') is-invalid @enderror" name="category"
                                         value="{{ $item['category'] }}" autofocus>
@@ -47,10 +47,10 @@
                                 </div>
                             </div>
 
-                                <div class="row pb-5 mx-3">
+                                <div class="row mb-3 pb-5 mx-3">
                                {{-- price --}}
                                <div class="col">
-                                <label class="form-label" for="price">Price</label>
+                                <label class="form-label" style="color :#ECF2F0" for="price">Price</label>
                                 <input id="price" type="number"
                                     class="form-control form-control-lg @error('price') is-invalid @enderror" name="price"
                                     value="{{ $item['price'] }}" autofocus>
