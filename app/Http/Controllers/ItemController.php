@@ -103,6 +103,15 @@ class ItemController extends Controller
             'category' => $request->category,
             'price'  => $request->price,
         ]);
+
+        if ($response->serverError()) {
+            return abort(500);
+        }
+
+        if ($response->clientError()) {
+            return redirect()->back()->with('message', $response->json()['message']);
+        }
+
         return redirect()->route('item.index', [
             'response' => $response,
         ])->with('message', 'Items successfully updated!');
