@@ -78,7 +78,10 @@ class ItemSaleController extends Controller
         $url = config('app.guzzle_url') . "/sales/" . $id_sale . '/item-sales/' . $id;
         $response = Http::delete($url);
 
-        if ($id_sale === null) {
+        $url_sales = config('app.guzzle_url') . "/sales";
+        $sales = Http::get($url_sales)['sales'];
+
+        if (array_search($id_sale, array_column($sales, 'id_sale')) === FALSE) {
             return redirect()->route('sale.index', [
                 'response' => $response
             ])->with('message', $response->json()['message']);

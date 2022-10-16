@@ -25,9 +25,12 @@ use App\Http\Controllers\ItemSaleController;
 
 Auth::routes();
 
+Route::get('/', function () {
+    return view('landing-page');
+})->name('landing-page');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     Route::prefix('customers')->controller(CustomerController::class)->name('customer.')->group(function () {
         Route::get('/create', 'create')->name('create');
@@ -62,7 +65,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('sales/{id_sale}/item-sales')->controller(ItemSaleController::class)->name('item-sale.')->group(function () {
         Route::get('/create', 'create')->name('create');
         Route::post('/', 'store')->name('store');
-        Route::post('/{id}/edit', 'edit')->name('edit');
+        Route::get('/{id}/edit', 'edit')->name('edit');
         Route::patch('/{id}', 'update')->name('update');
         Route::delete('/{id}', 'destroy')->name('destroy');
     });
