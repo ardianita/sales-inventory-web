@@ -10,7 +10,7 @@
                     <div class="card-title">
                         <h5 class="text-center fw-bold">Customers</h5>
                     </div>
-                    <p></p>
+                    <h5 class="text-center">{{ count($customers['customers']) }}</h5>
                 </div>
             </div>
         </div>
@@ -20,7 +20,7 @@
                     <div class="card-title">
                         <h5 class="text-center fw-bold">Items</h5>
                     </div>
-                    <p></p>
+                    <h5 class="text-center">{{ count($items['items']) }}</h5>
                 </div>
             </div>
         </div>
@@ -30,7 +30,7 @@
                     <div class="card-title">
                         <h5 class="text-center fw-bold">Sales</h5>
                     </div>
-                    <p></p>
+                    <h5 class="text-center">{{ count($sales['sales']) }}</h5>
                 </div>
             </div>
         </div>
