@@ -12,7 +12,7 @@
             @endif
         </div>
     </div>
-    <div class="d-flex align-content-center justify-content-center flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 ">
+    <div class="d-flex align-content-center justify-content-center flex-wrap flex-md-nowrap pb-2 mb-3 ">
         <div class="shadow rounded col-md-5">
             <div class="card">
                 <div class="card-body mx-3 my-5">
@@ -28,7 +28,11 @@
                         <tbody>
                             @forelse ($sales['sale']['item_sales'] as $item_sale)
                             <tr>
-                                <th>{{ $item_sale['item_id'] }}</th>
+                                <th>
+                                    @foreach ($items['items'] as $item)
+                                    {{ $item_sale['item_id'] === $item['id_item'] ? $item['name'] : '' }}
+                                    @endforeach
+                                </th>
                                 <th>{{ $item_sale['qty'] }}</th>
                                 <th>
                                     <div class="row justify-content-center">
@@ -46,12 +50,16 @@
                                 <div class="modal-dialog modal-dialog-centered">
                                     <div class="modal-content">
                                         <div class="modal-header border-0">
-                                            <strong class="modal-title">Sale Delete Confirmation</strong>
+                                            <strong class="modal-title">Item Sale Delete Confirmation</strong>
                                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                         </div>
                                         <div class="modal-body text-center p-3" style="font-size: 18px">
                                             <span>Are you sure you want to delete </span>
-                                            <span><strong>{{ $item_sale['item_id'] }}</strong> ?</span>
+                                            <span><strong>
+                                                    @foreach ($items['items'] as $item)
+                                                    {{ $item_sale['item_id'] === $item['id_item'] ? $item['name'] : '' }}
+                                                    @endforeach
+                                                </strong> ?</span>
                                         </div>
 
                                         <div class="modal-footer border-0 mx-auto">

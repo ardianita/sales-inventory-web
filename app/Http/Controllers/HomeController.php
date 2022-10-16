@@ -25,13 +25,13 @@ class HomeController extends Controller
     public function index()
     {
         $url_sales = config('app.guzzle_url') . "/sales";
-        $sales = Http::get($url_sales);
+        $sales = json_decode(Http::get($url_sales), true);
 
-        $url_items      = config('app.guzzle_url') . "/items";
-        $items = Http::get($url_items);
+        $url_items = config('app.guzzle_url') . "/items";
+        $items = json_decode(Http::get($url_items), true);
 
-        $url_customers  = config('app.guzzle_url') . "/customers";
-        $customers = Http::get($url_customers);
+        $url_customers = config('app.guzzle_url') . "/customers";
+        $customers = json_decode(Http::get($url_customers), true);
 
         return view('home', [
             'items'     => $items,

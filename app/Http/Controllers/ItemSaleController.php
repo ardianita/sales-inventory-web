@@ -36,22 +36,22 @@ class ItemSaleController extends Controller
         ])->with('message', $response->json()['message']);
     }
 
-    public function edit($id_sale, $id_item)
+    public function edit($id_sale, $id)
     {
 
         $url_sale = config('app.guzzle_url') . '/sales/' . $id_sale;
-        $sales = Http::get($url_sale);
+        $sales = Http::get($url_sale)['sale'];
 
-        $url_item = config('app.guzzle_url') . '/items/' . $id_item;
-        $item_name = Http::get($url_item)['item']['name'];
+        $url_item = config('app.guzzle_url') . '/items/' . $id;
+        $items = Http::get($url_item)['item'];
 
-        foreach ($sales['sale']['item_sales'] as $item_sale) {
-        }
+        // $url = config('app.guzzle_url') . '/sales/' . $id_sale . '/item-sales/' . $items['id_item'];
+        // $item = Http::get($url)->json();
+        // return ($item);
 
         return view('sales.item-sale.edit', [
             'sales' => $sales,
-            'item_name' => $item_name,
-            'item_sale' => $item_sale,
+            'items' => $items,
         ]);
     }
 
@@ -61,9 +61,11 @@ class ItemSaleController extends Controller
         $url = config('app.guzzle_url') . "/sales/" . $id_sale . '/item-sales/' . $id;
         $response = Http::patch($url, [
             'sale_id' => $request->id_sale,
-            'item_id' => $request->item_id,
+            'item_id' => $request->id,
             'qty' => $request->qty,
         ]);
+
+        // dd($response);
 
         return redirect()->route('sale.show', [
             'response' => $response,
