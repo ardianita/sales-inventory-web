@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container mt-4">
     @if (session()->has('message'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         {{ session('message') }}
