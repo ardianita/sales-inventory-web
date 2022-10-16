@@ -65,7 +65,7 @@ Route::middleware(['auth'])->group(function () {
     Route::prefix('sales/{id_sale}/item-sales')->controller(ItemSaleController::class)->name('item-sale.')->group(function () {
         Route::get('/create', 'create')->name('create');
         Route::post('/', 'store')->name('store');
-        Route::post('/{id}/edit', 'edit')->name('edit');
+        Route::get('/{id}/edit', 'edit')->name('edit');
         Route::patch('/{id}', 'update')->name('update');
         Route::delete('/{id}', 'destroy')->name('destroy');
     });
