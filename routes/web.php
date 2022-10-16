@@ -1,11 +1,12 @@
 <?php
 
-use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ItemController;
 use App\Http\Controllers\SaleController;
 use App\Http\Controllers\CustomerController;
-use App\Http\Controllers\ItemController;
+use App\Http\Controllers\ItemSaleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,5 +60,13 @@ Route::middleware(['auth'])->group(function () {
         Route::get('/', 'index')->name('index');
         Route::get('/{id_item}', 'show')->name('show');
         Route::delete('/{id_item}', 'destroy')->name('destroy');
+    });
+
+    Route::prefix('sales/{id_sale}/item-sales')->controller(ItemSaleController::class)->name('item-sale.')->group(function () {
+        Route::get('/create', 'create')->name('create');
+        Route::post('/', 'store')->name('store');
+        Route::post('/{id}/edit', 'edit')->name('edit');
+        Route::patch('/{id}', 'update')->name('update');
+        Route::delete('/{id}', 'destroy')->name('destroy');
     });
 });
