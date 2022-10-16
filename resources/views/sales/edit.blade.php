@@ -47,7 +47,7 @@
                         <select name="item_id" class="form-select" required>
                             <option selected>--- SELECT ITEM ---</option>
                             @foreach ($items['items'] as $item)
-                            <option value="{{ $item['id_item'] }}" {{ ($sales['item_sale'][0]['item_id'] === $item['id_item']) ? 'selected' : '' }}>
+                            <option value="{{ $item['id_item'] }}" {{ ($sales['item_sales'][0]['item_id'] === $item['id_item']) ? 'selected' : '' }}>
                                 {{ $item['name'] }}
                             </option>
                             @endforeach
@@ -60,7 +60,7 @@
                     </div>
                     <div class="col-md-6">
                         <label>Quantity</label>
-                        <input type="number" class="form-control @error('qty') is-invalid @enderror" name="qty" value="{{ $sales['item_sale'][0]['qty'] }}" required>
+                        <input type="number" class="form-control @error('qty') is-invalid @enderror" name="qty" value="{{ $sales['item_sales'][0]['qty'] }}" required>
 
                         @error('qty')
                         <span class="invalid-feedback" role="alert">
