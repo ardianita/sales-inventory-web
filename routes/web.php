@@ -24,9 +24,12 @@ use App\Http\Controllers\ItemController;
 
 Auth::routes();
 
+Route::get('/', function () {
+    return view('landing-page');
+})->name('landing-page');
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
 
     Route::prefix('customers')->controller(CustomerController::class)->name('customer.')->group(function () {
         Route::get('/create', 'create')->name('create');
