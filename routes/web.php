@@ -59,10 +59,10 @@ Route::middleware(['auth'])->group(function () {
         Route::delete('/{id_item}', 'destroy')->name('destroy');
     });
 
-    Route::prefix('sales/{id_sale}/item-sale')->controller(ItemSaleController::class)->name('item-sale.')->group(function () {
+    Route::prefix('sales/{id_sale}/item-sales')->controller(ItemSaleController::class)->name('item-sale.')->group(function () {
         Route::get('/create', 'create')->name('create');
         Route::post('/', 'store')->name('store');
-        Route::get('/{id_item}/edit', 'edit')->name('edit');
+        Route::post('/{id}/edit', 'edit')->name('edit');
         Route::patch('/{id}', 'update')->name('update');
         Route::delete('/{id}', 'destroy')->name('destroy');
     });

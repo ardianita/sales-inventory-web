@@ -4,7 +4,9 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <form action="{{ route('item-sale.update', [$sales['sale']['id_sale'], $item_sale['id']]) }}">
+            @foreach ($sales['item_sales'] as $sale)
+            @if ($sale['item_id'] === $items['id_item'])
+            <form action="{{ route('item-sale.update', ['id_sale' => $sales['id_sale'], 'id' => $sale['item_id']]) }}" method="post">
                 @csrf
                 @method('PATCH')
                 <div class="card shadow border-1 rounded mt-5" style="background-color: #242F40;">
@@ -12,12 +14,11 @@
                         <h1 style="font-weight: bold; color: #ECF2F0">Edit Item</h1>
                     </div>
                     <div class="card-body mx-4 mb-4">
-                        <input type="hidden" value="{{ $item_sale['id'] }}">
                         <div class="row mb-3 mx-5">
                             <div class="col-md">
 
                                 <label style="color :#ECF2F0">Nota</label>
-                                <input type="text" class="form-control @error('sale_id') is-invalid @enderror" name="sale_id" value="{{ $sales['sale']['id_sale'] }}" disabled>
+                                <input type="text" class="form-control @error('sale_id') is-invalid @enderror" name="sale_id" value="{{ $sales['id_sale'] }}" disabled>
 
                                 @error('sale_id')
                                 <span class="invalid-feedback" role="alert">
@@ -31,7 +32,7 @@
                         <div class="row mb-3 mx-5">
                             <div class="col-md-6">
                                 <label style="color :#ECF2F0">Item</label>
-                                <input type="text" class="form-control @error('item_id') is-invalid @enderror" name="item_id" value="{{ $item_name }}" disabled>
+                                <input type="text" class="form-control @error('item_id') is-invalid @enderror" name="item_id" value="{{ $items['name'] }}" disabled>
 
                                 @error('item_id')
                                 <span class="invalid-feedback" role="alert">
@@ -43,8 +44,7 @@
                             <!-- Quantity -->
                             <div class="col-md-6">
                                 <label style="color :#ECF2F0">Quantity</label>
-                                <input type="number" class="form-control @error('qty') is-invalid @enderror" name="qty" value="{{ $item_sale['qty'] }}" required>
-
+                                <input type="number" class="form-control @error('qty') is-invalid @enderror" name="qty" value="{{ $sale['qty'] }}" required>
                                 @error('qty')
                                 <span class="invalid-feedback" role="alert">
                                     <strong>{{ $message }}</strong>
@@ -60,6 +60,8 @@
                     </div>
                 </div>
             </form>
+            @endif
+            @endforeach
         </div>
     </div>
 </div>
