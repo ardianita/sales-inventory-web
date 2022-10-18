@@ -20,6 +20,7 @@
                         <th>Kode_BRG</th>
                         <th>Name</th>
                         <th>Category</th>
+                        <th>Color</th>
                         <th>Price</th>
                         <th>Action</th>
                     </tr>
@@ -30,16 +31,17 @@
                         <th>{{ $item['id_item'] }}</th>
                         <th>{{ $item['name'] }}</th>
                         <th>{{ $item['category'] }}</th>
+                        <th>{{ $item['color'] }}</th>
                         <th>{{ $item['price'] }}</th>
                         <th>
                             <div class="row justify-content-center">
-                                <div class="col-md-2">
-                                    <a class="btn btn-primary btn-sm text-uppercase" style="width: 5rem" href="{{ route('item.show', $item['id_item']) }}">detail</a>
+                                <div class="col-md-3">
+                                    <a class="btn btn-primary btn-sm text-uppercase" style="width: 5rem" href="{{ route('item.show', $item['id_item']) }}">Detail</a>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <a class="btn btn-warning btn-sm text-uppercase" style="width: 5rem" href="{{ route('item.edit', $item['id_item']) }}">Update</a>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col-md-3">
                                     <a class="btn btn-danger btn-sm text-uppercase" style="width: 5rem" data-bs-toggle="modal" data-bs-target="#modalDelete{{$item['id_item']}}">Delete</a>
                                 </div>
                             </div>

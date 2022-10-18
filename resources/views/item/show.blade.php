@@ -26,6 +26,12 @@
                         </div>
                     </div>
                     <div class="row my-1 mx-5">
+                        <div class="col-md">Color</div>
+                        <div class="col-md">
+                            <input value="{{ $item['color'] }}" disabled>
+                        </div>
+                    </div>
+                    <div class="row my-1 mx-5">
                         <div class="col-md">Price</div>
                         <div class="col-md">
                             <input value="{{ $item['price'] }}" disabled>
