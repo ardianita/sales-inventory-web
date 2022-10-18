@@ -24,8 +24,17 @@
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 
     @yield('head')
+
 </head>
 
+    <!-- CSS Files -->
+    <link rel="stylesheet" href="{{ asset('/assets/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/azzara.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/css/azzara.min.css') }}">
+    {{-- icons --}}
+    <link rel="stylesheet" href="{{ asset('/assets/css/fonts.css') }}">
+    <script src="{{ asset('/assets/js/plugin/webfont/webfont.min.js') }}"></script>
+</head>
 <body>
     <div id="app">
         @auth
@@ -86,10 +95,12 @@
         </nav>
         @endauth
 
-        <main>
+        <main class="py-4" style="width: auto; background-color: #b0b09ec4;">
             @yield('content')
         </main>
+
     </div>
+
 </body>
 
 </html>
