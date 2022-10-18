@@ -21,7 +21,6 @@
                             @method('POST')
 
                             <div class="row mb-3 mx-3">
-
                                 {{-- name --}}
                                 <div class="col">
                                     <label class="form-label" style="color :#ECF2F0" for="name">Name</label>
@@ -47,6 +46,22 @@
                                         autofocus required>
 
                                     @error('category')
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $message }}</strong>
+                                        </span>
+                                    @enderror
+                                </div>
+                            </div>
+
+                            <div class="row mb-3 mx-3">
+                                {{-- Color --}}
+                                <div class="col">
+                                    <label class="form-label" style="color :#ECF2F0" for="color">Color</label>
+                                    <input id="color" type="text"
+                                        class="form-control form-control-lg @error('color') is-invalid @enderror" name="color"
+                                        autofocus required>
+
+                                    @error('color')
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $message }}</strong>
                                         </span>

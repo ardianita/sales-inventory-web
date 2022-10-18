@@ -40,6 +40,7 @@ class ItemController extends Controller
         $response = Http::post($url, [
             'name'    => $request->name,
             'category' => $request->category,
+            'color' => $request->color,
             'price'  => $request->price,
         ]);
 
@@ -101,6 +102,7 @@ class ItemController extends Controller
         $response = Http::patch($url, [
             'name'    => $request->name,
             'category' => $request->category,
+            'color' => $request->color,
             'price'  => $request->price,
         ]);
 
