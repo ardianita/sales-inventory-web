@@ -19,12 +19,12 @@
                         <th>#</th>
                         <th>Customer</th>
                         <th>Date</th>
-                        <th>Item</th>
+                        <th>Subtotal</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($sales['sales'] as $sale)
+                    @forelse ($sales['data'] as $sale)
                     <tr>
                         <th>{{ $sale['id_sale'] }}</th>
                         <th>{{ $sale['customer']['name'] }}</th>
@@ -32,13 +32,13 @@
                         <th>{{ $sale['subtotal'] }}</th>
                         <th>
                             <div class="row justify-content-center">
-                                <div class="col-lg-2">
+                                <div class="col">
                                     <a class="btn btn-primary btn-sm text-uppercase" style="width: 5rem" href="{{ route('sale.show', $sale['id_sale']) }}">detail</a>
                                 </div>
-                                <div class="col-lg-2">
+                                <div class="col">
                                     <a class="btn btn-warning btn-sm text-uppercase" style="width: 5rem" href="{{ route('sale.edit', $sale['id_sale']) }}">Update</a>
                                 </div>
-                                <div class="col-lg-2">
+                                <div class="col">
                                     <a class="btn btn-danger btn-sm text-uppercase" style="width: 5rem" data-bs-toggle="modal" data-bs-target="#modalDelete{{$sale['id_sale']}}">Delete</a>
                                 </div>
                             </div>
