@@ -33,10 +33,6 @@ class HomeController extends Controller
         $url_customers = config('app.guzzle_url') . "/customers";
         $customers = json_decode(Http::get($url_customers), true);
 
-        return view('home', [
-            'items'     => $items,
-            'sales'     => $sales,
-            'customers' => $customers
-        ]);
+        return view('home');
     }
 }
