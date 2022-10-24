@@ -17,7 +17,8 @@ class ItemSaleController extends Controller
 
         return view('sales.item-sale.create', [
             'sales' => $sales,
-            'items' => $items
+            'items' => $items,
+            // 'colors' => explode(', ', $items['data']['color'])
         ]);
     }
 
@@ -27,31 +28,37 @@ class ItemSaleController extends Controller
         $response = Http::post($url, [
             'sale_id' => $request->id_sale,
             'item_id' => $request->item_id,
+            'color' => $request->color,
             'qty' => $request->qty,
         ]);
+
+        if ($response->serverError()) {
+            return abort(500);
+        }
+
+        if ($response->clientError()) {
+            return redirect()->back()->with('message', $response->json()['message']);
+        }
 
         return redirect()->route('sale.show', [
             'response'  => $response,
             'id_sale' => $id_sale
-        ])->with('message', $response->json()['message']);
+        ])->with('message', $response->json()['meta']['message']);
     }
 
     public function edit($id_sale, $id)
     {
 
         $url_sale = config('app.guzzle_url') . '/sales/' . $id_sale;
-        $sales = Http::get($url_sale)['sale'];
+        $sales = Http::get($url_sale)['data'];
 
         $url_item = config('app.guzzle_url') . '/items/' . $id;
-        $items = Http::get($url_item)['item'];
-
-        // $url = config('app.guzzle_url') . '/sales/' . $id_sale . '/item-sales/' . $items['id_item'];
-        // $item = Http::get($url)->json();
-        // return ($item);
+        $items = Http::get($url_item)['data'];
 
         return view('sales.item-sale.edit', [
             'sales' => $sales,
             'items' => $items,
+            'colors' => explode(', ', $items['color']),
         ]);
     }
 
@@ -62,15 +69,14 @@ class ItemSaleController extends Controller
         $response = Http::patch($url, [
             'sale_id' => $request->id_sale,
             'item_id' => $request->id,
+            'color' => $request->color,
             'qty' => $request->qty,
         ]);
-
-        // dd($response);
 
         return redirect()->route('sale.show', [
             'response' => $response,
             'id_sale' => $id_sale
-        ])->with('message', $response->json()['message']);
+        ])->with('message', $response->json()['meta']['message']);
     }
 
     public function destroy($id_sale, $id)
@@ -79,17 +85,17 @@ class ItemSaleController extends Controller
         $response = Http::delete($url);
 
         $url_sales = config('app.guzzle_url') . "/sales";
-        $sales = Http::get($url_sales)['sales'];
+        $sales = Http::get($url_sales)['data'];
 
         if (array_search($id_sale, array_column($sales, 'id_sale')) === FALSE) {
             return redirect()->route('sale.index', [
                 'response' => $response
-            ])->with('message', $response->json()['message']);
+            ])->with('message', $response->json()['meta']['message']);
         }
 
         return redirect()->route('sale.show', [
             'response' => $response,
             'id_sale' => $id_sale
-        ])->with('message', $response->json()['message']);
+        ])->with('message', $response->json()['meta']['message']);
     }
 }
