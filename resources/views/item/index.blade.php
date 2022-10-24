@@ -26,7 +26,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($items['items'] as $item)
+                    @forelse ($items['data'] as $item)
                     <tr>
                         <th>{{ $item['id_item'] }}</th>
                         <th>{{ $item['name'] }}</th>
