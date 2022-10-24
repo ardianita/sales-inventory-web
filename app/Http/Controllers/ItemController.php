@@ -38,9 +38,10 @@ class ItemController extends Controller
         $url = config('app.guzzle_url') . '/items';
 
         $response = Http::post($url, [
-            'name'    => $request->name,
+            'name' => $request->name,
             'category' => $request->category,
-            'price'  => $request->price,
+            'color' => $request->color,
+            'price' => $request->price,
         ]);
 
         if ($response->serverError()) {
@@ -53,7 +54,7 @@ class ItemController extends Controller
 
         return redirect()->route('item.index', [
             'response' => $response,
-        ])->with('message', 'Items successfully created!');
+        ])->with('message', $response->json()['meta']['message']);
     }
 
     /**
@@ -68,7 +69,7 @@ class ItemController extends Controller
         $item = Http::get($url);
 
         return view('item.show', [
-            'item' => $item['item'],
+            'item' => $item['data'],
         ]);
     }
 
@@ -82,9 +83,11 @@ class ItemController extends Controller
     {
         $url = config('app.guzzle_url') . '/items/' . $id_item;
         $item = Http::get($url);
+        $colors = explode(', ', $item['data']['color']);
 
         return view('item.edit', [
-            'item' => $item['item'],
+            'item' => $item['data'],
+            'colors' => $colors
         ]);
     }
 
@@ -99,9 +102,10 @@ class ItemController extends Controller
     {
         $url = config('app.guzzle_url') . '/items/' . $id_item;
         $response = Http::patch($url, [
-            'name'    => $request->name,
+            'name' => $request->name,
             'category' => $request->category,
-            'price'  => $request->price,
+            'color' => $request->color,
+            'price' => $request->price,
         ]);
 
         if ($response->serverError()) {
@@ -114,7 +118,7 @@ class ItemController extends Controller
 
         return redirect()->route('item.index', [
             'response' => $response,
-        ])->with('message', 'Items successfully updated!');
+        ])->with('message', $response->json()['meta']['message']);
     }
 
     /**
@@ -129,6 +133,6 @@ class ItemController extends Controller
         $delete = Http::delete($url);
         return redirect()->route('item.index', [
             'delete' => $delete,
-        ])->with('message', 'Items has been deleted!');
+        ])->with('message', $delete->json()['meta']['message']);
     }
 }

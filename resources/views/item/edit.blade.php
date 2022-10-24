@@ -52,6 +52,28 @@
                             </div>
                         </div>
 
+                        <div class="row mb-3 mx-3">
+                            {{-- Color --}}
+                            <div class="col">
+                                <label style="color :#ECF2F0" for="color">Color</label>
+                                @foreach ($colors as $color)
+                                <div class="form-check">
+                                    <label style="color :#ECF2F0"><input type="checkbox" class="form-check-input @error('color') is-invalid @enderror" name="color[]" value="Black" {{ $color == 'Black' ? 'checked' : '' }}> Black</label><br>
+                                    <label style="color :#ECF2F0"><input type="checkbox" class="form-check-input @error('color') is-invalid @enderror" name="color[]" value="Pink" {{ $color == 'Pink' ? 'checked' : '' }}> Pink</label><br>
+                                    <label style="color :#ECF2F0"><input type="checkbox" class="form-check-input @error('color') is-invalid @enderror" name="color[]" value="White" {{ $color == 'White' ? 'checked' : '' }}> White</label><br>
+                                    <label style="color :#ECF2F0"><input type="checkbox" class="form-check-input @error('color') is-invalid @enderror" name="color[]" value="Red" {{ $color == 'Red' ? 'checked' : '' }}> Red</label><br>
+                                    <label style="color :#ECF2F0"><input type="checkbox" class="form-check-input @error('color') is-invalid @enderror" name="color[]" value="Yellow" {{ $color == 'Yellow' ? 'checked' : '' }}> Yellow</label>
+
+                                    @error('color')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                    @enderror
+                                </div>
+                                @endforeach
+                            </div>
+                        </div>
+
                         <div class="row mb-3 pb-5 mx-3">
                             {{-- price --}}
                             <div class="col">

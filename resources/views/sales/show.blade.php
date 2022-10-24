@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="d-flex align-content-center justify-content-center flex-wrap flex-md-nowrap pt-3 pb-2 mb-3 ">
-        <div class="col-md-5 mt-3">
+        <div class="col-md-6 mt-3">
             @if (session()->has('message'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session('message') }}
@@ -13,7 +13,7 @@
         </div>
     </div>
     <div class="d-flex align-content-center justify-content-center flex-wrap flex-md-nowrap pb-2 mb-3 ">
-        <div class="shadow rounded col-md-5">
+        <div class="shadow rounded col-md-6">
             <div class="card">
                 <div class="card-body mx-3 my-5">
                     <h1 class="text-center mb-4">Sale Detail</h1>
@@ -21,17 +21,27 @@
                         <thead>
                             <tr>
                                 <th>Item</th>
+                                <th>Color</th>
+                                <th>Price</th>
                                 <th>Quantity</th>
                                 <th>Price</th>
                                 <th colspan="2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @forelse ($sales['sale']['item_sales'] as $item_sale)
+                            @forelse ($sales['data']['item_sales'] as $item_sale)
                             <tr>
                                 <th>
-                                    @foreach ($items['items'] as $item)
+                                    @foreach ($items['data'] as $item)
                                     {{ $item_sale['item_id'] === $item['id_item'] ? $item['name'] : '' }}
+                                    @endforeach
+                                </th>
+                                <th>@foreach ($items['data'] as $item)
+                                    {{ $item_sale['item_id'] === $item['id_item'] ? $item['color'] : '' }}
+                                    @endforeach
+                                </th>
+                                <th>@foreach ($items['data'] as $item)
+                                    {{ $item_sale['item_id'] === $item['id_item'] ? $item['price'] : '' }}
                                     @endforeach
                                 </th>
                                 <th>{{ $item_sale['qty'] }}</th>
@@ -62,7 +72,7 @@
                                         <div class="modal-body text-center p-3" style="font-size: 18px">
                                             <span>Are you sure you want to delete </span>
                                             <span><strong>
-                                                    @foreach ($items['items'] as $item)
+                                                    @foreach ($items['data'] as $item)
                                                     {{ $item_sale['item_id'] === $item['id_item'] ? $item['name'] : '' }}
                                                     @endforeach
                                                 </strong> ?</span>
@@ -70,7 +80,7 @@
 
                                         <div class="modal-footer border-0 mx-auto">
                                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
-                                            <form action="{{ route('item-sale.destroy', [$sales['sale']['id_sale'], $item_sale['id']]) }}" method="POST" class="d-inline-block">
+                                            <form action="{{ route('item-sale.destroy', [$sales['data']['id_sale'], $item_sale['id']]) }}" method="POST" class="d-inline-block">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger">Delete</button>
@@ -88,7 +98,7 @@
                     </table>
 
                     <div class="row mt-2 mx-5">
-                        <a class="btn btn-sm btn-dark px-3 mb-5 border-0" href="{{ route('item-sale.create', $sales['sale']['id_sale']) }}" style="background-color: #242F40">Add Item</a>
+                        <a class="btn btn-sm btn-dark px-3 mb-5 border-0" href="{{ route('item-sale.create', $sales['data']['id_sale']) }}" style="background-color: #242F40">Add Item</a>
                     </div>
 
                 </div>

@@ -1,84 +1,96 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mt-4">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                {{-- notification --}}
-                @if (session()->has('message'))
-                <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                    {{ session('message') }}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            {{-- notification --}}
+            @if (session()->has('message'))
+            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                {{ session('message') }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>
+            @endif
+            <div class="card shadow p-3 mb-5 rounded" style="background-color: #242F40; border-width:thin">
+                <div class="card-title text-center mt-3">
+                    <h1 style="font-weight: bold; color: #ECF2F0">Create Items</h1>
                 </div>
-                @endif
-                <div class="card shadow p-3 mb-5 rounded" style="background-color: #242F40; border-width:thin">
-                    <div class="card-title text-center mt-3">
-                        <h1 style="font-weight: bold; color: #ECF2F0">Create Items</h1>
-                    </div>
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('item.store') }}">
-                            @csrf
-                            @method('POST')
+                <div class="card-body">
+                    <form method="POST" action="{{ route('item.store') }}">
+                        @csrf
+                        @method('POST')
 
-                            <div class="row mb-3 mx-3">
+                        <div class="row mb-3 mx-3">
+                            {{-- name --}}
+                            <div class="col">
+                                <label class="form-label" style="color :#ECF2F0" for="name">Name</label>
+                                <input id="name" type="text" class="form-control form-control-lg @error('name') is-invalid @enderror" name="name" autofocus required>
 
-                                {{-- name --}}
-                                <div class="col">
-                                    <label class="form-label" style="color :#ECF2F0" for="name">Name</label>
-                                    <input id="name" type="text"
-                                        class="form-control form-control-lg @error('name') is-invalid @enderror" name="name"
-                                        autofocus required>
+                                @error('name')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
 
-                                    @error('name')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
+
+                        <div class="row mb-3 mx-3">
+                            {{-- category --}}
+                            <div class="col">
+                                <label class="form-label" style="color :#ECF2F0" for="category">Category</label>
+                                <input id="category" type="text" class="form-control form-control-lg @error('category') is-invalid @enderror" name="category" autofocus required>
+
+                                @error('category')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
+                            </div>
+                        </div>
+
+                        <div class="row mb-3 mx-3">
+                            {{-- Color --}}
+                            <div class="col">
+                                <label style="color :#ECF2F0" for="color">Color</label>
+                                <div class="form-check">
+                                    <label style="color :#ECF2F0"><input type="checkbox" class="form-check-input @error('color') is-invalid @enderror" name="color[]" value="Black"> Black</label><br>
+                                    <label style="color :#ECF2F0"><input type="checkbox" class="form-check-input @error('color') is-invalid @enderror" name="color[]" value="Pink"> Pink</label><br>
+                                    <label style="color :#ECF2F0"><input type="checkbox" class="form-check-input @error('color') is-invalid @enderror" name="color[]" value="White"> White</label><br>
+                                    <label style="color :#ECF2F0"><input type="checkbox" class="form-check-input @error('color') is-invalid @enderror" name="color[]" value="Red"> Red</label><br>
+                                    <label style="color :#ECF2F0"><input type="checkbox" class="form-check-input @error('color') is-invalid @enderror" name="color[]" value="Yellow"> Yellow</label>
+
+                                    @error('color')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
                                     @enderror
                                 </div>
                             </div>
+                        </div>
 
+                        <div class="row mb-3 pb-5 mx-3">
+                            {{-- price --}}
+                            <div class="col">
+                                <label class="form-label" style="color :#ECF2F0" for="price">Price</label>
+                                <input id="price" type="number" class="form-control form-control-lg @error('price') is-invalid @enderror" name="price" autofocus required>
 
-                            <div class="row mb-3 mx-3">
-                                {{-- category --}}
-                                <div class="col">
-                                    <label class="form-label" style="color :#ECF2F0" for="category">Category</label>
-                                    <input id="category" type="text"
-                                        class="form-control form-control-lg @error('category') is-invalid @enderror" name="category"
-                                        autofocus required>
-
-                                    @error('category')
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $message }}</strong>
-                                        </span>
-                                    @enderror
-                                </div>
+                                @error('price')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
+                        </div>
 
-                                <div class="row mb-3 pb-5 mx-3">
-                                    {{-- price --}}
-                                    <div class="col">
-                                        <label class="form-label" style="color :#ECF2F0" for="price">Price</label>
-                                        <input id="price" type="number"
-                                            class="form-control form-control-lg @error('price') is-invalid @enderror" name="price"
-                                            autofocus required>
-
-                                        @error('price')
-                                            <span class="invalid-feedback" role="alert">
-                                                <strong>{{ $message }}</strong>
-                                            </span>
-                                        @enderror
-                                    </div>
-                            </div>
-
-                            {{-- button --}}
-                            <div class="col-md text-center">
-                                <button type="submit" class="btn btn-primary"
-                                    style="width: 12rem; height:3rem; background-color: #5D7487; border-color:#5D7487; border-radius:10px">Submit</button>
-                            </div>
-                        </form>
-                    </div>
+                        {{-- button --}}
+                        <div class="col-md text-center">
+                            <button type="submit" class="btn btn-primary" style="width: 12rem; height:3rem; background-color: #5D7487; border-color:#5D7487; border-radius:10px">Submit</button>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
     </div>
+</div>
 @endsection

@@ -13,8 +13,8 @@
                     <div class="col-md">
                         <label class="form-label" style="color :#ECF2F0">Customer</label>
                         <select name="customer_id" class="form-select" required>
-                            <option selected>--- SELECT CUSTOMER ---</option>
-                            @foreach ($customers['customers'] as $customer)
+                            <option selected>SELECT CUSTOMER</option>
+                            @foreach ($customers['data'] as $customer)
                             <option value="{{ $customer['id_customer'] }}">
                                 {{ $customer['name'] }}
                             </option>
@@ -40,11 +40,11 @@
                     </div>
                 </div>
                 <div class="row mb-3 mx-5">
-                    <div class="col-md-6">
+                    <div class="col-md-4">
                         <label class="form-label" style="color :#ECF2F0">Item</label>
                         <select name="item_id" class="form-select" required>
-                            <option selected>--- SELECT ITEM ---</option>
-                            @foreach ($items['items'] as $item)
+                            <option selected>SELECT ITEM</option>
+                            @foreach ($items['data'] as $item)
                             <option value="{{ $item['id_item'] }}">
                                 {{ $item['name'] }} - {{ $item['price'] }}
                             </option>
@@ -56,8 +56,18 @@
                         </span>
                         @enderror
                     </div>
-                    <div class="col-md-6">
-                        <label class="form-label">Quantity</label>
+                    <div class="col-md-4">
+                        <label class="form-label" style="color :#ECF2F0">Color</label>
+                        <input type="text" class="form-control @error('color') is-invalid @enderror" name="qty" value="{{ old('color') }}" required>
+
+                        @error('color')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                        @enderror
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label" style="color :#ECF2F0">Quantity</label>
                         <input type="number" class="form-control @error('qty') is-invalid @enderror" name="qty" value="{{ old('qty') }}" required>
 
                         @error('qty')

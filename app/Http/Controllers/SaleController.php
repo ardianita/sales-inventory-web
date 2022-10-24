@@ -18,7 +18,7 @@ class SaleController extends Controller
         $url_sales = config('app.guzzle_url') . "/sales";
         $sales = Http::get($url_sales);
 
-        // dd($sales['sales']['customer']);
+        // return $sales;
 
         return view('sales.index', [
             'sales' => $sales,
@@ -64,7 +64,7 @@ class SaleController extends Controller
 
         return redirect()->route('sale.index', [
             'response'  => $response
-        ])->with('message', 'Sale successfully created!');
+        ])->with('message', $response->json()['meta']['message']);
     }
 
     /**
@@ -81,9 +81,9 @@ class SaleController extends Controller
         $url_item = config('app.guzzle_url') . '/items';
         $items = Http::get($url_item);
 
-        $id_customer = $sales['sale']['customer_id'];
+        $id_customer = $sales['data']['customer_id'];
         $url_customer = config('app.guzzle_url') . '/customers/' . $id_customer;
-        $customer_name = Http::get($url_customer)['customer']['name'];
+        $customer_name = Http::get($url_customer)['data']['name'];
 
         return view('sales.show', [
             'sales' => $sales,
@@ -113,7 +113,7 @@ class SaleController extends Controller
         $items = Http::get($url_item);
 
         return view('sales.edit', [
-            'sales'         => $sales['sale'],
+            'sales'         => $sales['data'],
             'customers'     => $customers,
             'items'         => $items,
         ]);
@@ -131,14 +131,14 @@ class SaleController extends Controller
         $url = config('app.guzzle_url') . "/sales/" . $id_sale;
         $response = Http::patch($url, [
             'customer_id'   => $request->customer_id,
-            'date'          => $request->date,
-            'qty'           => $request->qty,
-            'item_id'       => $request->item_id
+            'date'          => $request->date
         ]);
+
+        // return $response->meta->message;
 
         return redirect()->route('sale.index', [
             'response'  => $response
-        ])->with('message', 'Sale successfully updated!');
+        ])->with('message', $response->json()['meta']['message']);
     }
 
     /**
@@ -154,6 +154,6 @@ class SaleController extends Controller
 
         return redirect()->route('sale.index', [
             'response'  => $response
-        ])->with('message', 'Sale has been deleted!');
+        ])->with('message', $response->json()['meta']['message']);
     }
 }
