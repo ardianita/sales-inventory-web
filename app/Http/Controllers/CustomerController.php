@@ -17,13 +17,13 @@ class CustomerController extends Controller
     {
         $url = config('app.guzzle_url') . '/customers';
         $response = Http::post($url, [
-            'name'    => $request->name,
+            'name' => $request->name,
             'domicile' => $request->domicile,
-            'gender'  => $request->gender,
+            'gender' => $request->gender,
         ]);
         return redirect()->route('customer.index', [
             'response' => $response,
-        ])->with('message', 'Customer successfully created!');
+        ])->with('message', $response->json()['meta']['message']);
     }
 
     public function edit($id_customer)
@@ -32,7 +32,7 @@ class CustomerController extends Controller
         $customer = Http::get($url);
 
         return view('customer.edit', [
-            'customer' => $customer['customer'],
+            'customer' => $customer['data'],
         ]);
     }
 
@@ -40,13 +40,13 @@ class CustomerController extends Controller
     {
         $url = config('app.guzzle_url') . '/customers/' . $id_customer;
         $response = Http::patch($url, [
-            'name'    => $request->name,
+            'name' => $request->name,
             'domicile' => $request->domicile,
-            'gender'  => $request->gender,
+            'gender' => $request->gender,
         ]);
         return redirect()->route('customer.index', [
             'response' => $response,
-        ])->with('message', 'Customer successfully updated!');
+        ])->with('message', $response->json()['meta']['message']);
     }
 
     public function show($id_customer)
@@ -55,7 +55,7 @@ class CustomerController extends Controller
         $customer = Http::get($url);
 
         return view('customer.show', [
-            'customer' => $customer['customer'],
+            'customer' => $customer['data'],
         ]);
     }
 
@@ -74,6 +74,6 @@ class CustomerController extends Controller
         $delete = Http::delete($url);
         return redirect()->route('customer.index', [
             'delete' => $delete,
-        ])->with('message', 'Customer has been deleted!');
+        ])->with('message', $delete->json()['meta']['message']);
     }
 }

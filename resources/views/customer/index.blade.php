@@ -25,7 +25,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @forelse ($customers['customers'] as $customer)
+                    @forelse ($customers['data'] as $customer)
                     <tr>
                         <th>{{ $customer['id_customer'] }}</th>
                         <th>{{ $customer['name'] }}</th>
@@ -33,13 +33,13 @@
                         <th>{{ ucfirst($customer['gender']) }}</th>
                         <th>
                             <div class="row justify-content-center">
-                                <div class="col-md-2">
+                                <div class="col">
                                     <a class="btn btn-primary btn-sm text-uppercase" style="width: 5rem" href="{{ route('customer.show', $customer['id_customer']) }}">detail</a>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col">
                                     <a class="btn btn-warning btn-sm text-uppercase" style="width: 5rem" href="{{ route('customer.edit', $customer['id_customer']) }}">Update</a>
                                 </div>
-                                <div class="col-md-2">
+                                <div class="col">
                                     <a class="btn btn-danger btn-sm text-uppercase" style="width: 5rem" data-bs-toggle="modal" data-bs-target="#modalDelete{{$customer['id_customer']}}">Delete</a>
                                 </div>
                             </div>
