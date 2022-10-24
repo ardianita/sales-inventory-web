@@ -46,7 +46,7 @@
                             <option selected>--- SELECT ITEM ---</option>
                             @foreach ($items['items'] as $item)
                             <option value="{{ $item['id_item'] }}">
-                                {{ $item['name'] }}
+                                {{ $item['name'] }} - {{ $item['price'] }}
                             </option>
                             @endforeach
                         </select>
