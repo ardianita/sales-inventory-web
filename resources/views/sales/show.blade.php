@@ -46,7 +46,7 @@
                                 </th>
                                 <th>{{ $item_sale['qty'] }}</th>
                                 <th>
-                                    @foreach ($items['items'] as $item)
+                                    @foreach ($items['data'] as $item)
                                     {{ $item_sale['item_id'] === $item['id_item'] ? $item['price'] : '' }}
                                     @endforeach
                                 </th>

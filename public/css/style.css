@@ -3034,13 +3034,13 @@ textarea.form-control-lg {
 
 .btn-primary {
   color: #fff;
-  background-color: #64a19d;
-  border-color: #64a19d;
+  background-color: #242F40;
+  border-color: #242F40;
 }
 .btn.btn-primary:hover {
   color: #fff;
-  background-color: #558985;
-  border-color: #50817e;
+  background-color: #1b2330;
+  border-color: #1b2330;
 }
 .btn-check:focus + .btn-primary, .btn-primary:focus {
   color: #fff;
@@ -11481,7 +11481,7 @@ textarea.form-control-lg {
   height: auto;
   min-height: 35rem;
   padding: 15rem 0;
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3) 0%, rgba(0, 0, 0, 0.7) 75%, #000 100%), url("/img/bg-masthead.jpg");
+  background: linear-gradient(to bottom, rgba(36, 47, 64, 0.5) 0%, rgba(36, 47, 64, 0.8) 75%, #242F40 100%), url('/img/background.jpg');
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: scroll;
@@ -11492,7 +11492,8 @@ textarea.form-control-lg {
   font-size: 2.5rem;
   line-height: 2.5rem;
   letter-spacing: 0.8rem;
-  background: linear-gradient(rgba(255, 255, 255, 0.9), rgba(255, 255, 255, 0));
+  background: linear-gradient(rgba(255, 255, 255, 1), rgba(255, 255, 255, 0));
+  font-weight: 900;
   -webkit-text-fill-color: transparent;
   -webkit-background-clip: text;
           background-clip: text;
