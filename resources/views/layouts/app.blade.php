@@ -38,62 +38,62 @@
 
 <body>
     <div id="app">
-        @auth
-        <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color: #242F40">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    Sales Inventory
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        @if(session('token'))
+            <nav class="navbar navbar-expand-md navbar-dark shadow-sm" style="background-color: #242F40">
+                <div class="container">
+                    <a class="navbar-brand" href="{{ route('home') }}">
+                        Sales Inventory
+                    </a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    {{-- start ul navbar --}}
-                    <ul class="navbar-nav me-auto m-2 mx-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" aria-current="page" href="{{ route('home') }}">
-                                <i class='bx bx-home-alt me-1'></i>Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('item.index') }}">
-                                <i class='bx bx-user me-1'></i>Items</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('sale.index') }}">
-                                <i class='bx bx-category-alt me-1'></i>Sales</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('customer.index') }}"><i class='bx bx-microphone me-1'></i>Customers</a>
-                        </li>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                        {{-- start ul navbar --}}
+                        <ul class="navbar-nav me-auto m-2 mx-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" aria-current="page" href="{{ route('home') }}">
+                                    <i class='bx bx-home-alt me-1'></i>Home</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('item.index') }}">
+                                    <i class='bx bx-user me-1'></i>Items</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('sale.index') }}">
+                                    <i class='bx bx-category-alt me-1'></i>Sales</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('customer.index') }}"><i class='bx bx-microphone me-1'></i>Customers</a>
+                            </li>
 
-                    </ul>
-                    {{-- end ul navbar --}}
+                        </ul>
+                        {{-- end ul navbar --}}
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav">
+                        <!-- Right Side Of Navbar -->
+                        <ul class="navbar-nav">
 
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                            </a>
-
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-                                    <i class="bi bi-box-arrow-right"></i>
-                                    <span>{{ __('Logout') }}</span>
+                            <li class="nav-item dropdown">
+                                <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    {{ App\Helper\Auth::user()->name }}
                                 </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                    </ul>
+                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        <i class="bi bi-box-arrow-right"></i>
+                                        <span>{{ __('Logout') }}</span>
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-        </nav>
-        @endauth
+            </nav>
+        @endif
 
         <main>
             @yield('content')
