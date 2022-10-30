@@ -20,7 +20,7 @@
                 <div class="d-flex justify-content-center">
                     <div class="text-center">
                         <h1 class="mx-auto my-4 text-uppercase">Sales Inventory</h1>
-                        <a class="btn btn-primary" href="{{ route('home') }}">Get Started</a>
+                        <a class="btn btn-primary" href="{{ route('login') }}">Get Started</a>
                     </div>
                 </div>
             </div>

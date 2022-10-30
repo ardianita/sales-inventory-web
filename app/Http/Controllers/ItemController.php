@@ -11,7 +11,10 @@ class ItemController extends Controller
     public function index()
     {
         $url = config('app.guzzle_url') . '/items';
-        $items = Http::get($url);
+        $items = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->get($url);
+
         return view('item.index', [
             'items' => $items,
         ]);
@@ -37,11 +40,14 @@ class ItemController extends Controller
     {
         $url = config('app.guzzle_url') . '/items';
 
-        $response = Http::post($url, [
+        $response = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->get($url, [
             'name' => $request->name,
             'category' => $request->category,
             'color' => $request->color,
             'price' => $request->price,
+
         ]);
 
         if ($response->serverError()) {
@@ -66,7 +72,9 @@ class ItemController extends Controller
     public function show($id_item)
     {
         $url = config('app.guzzle_url') . '/items/' . $id_item;
-        $item = Http::get($url);
+        $item = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->get($url);
 
         return view('item.show', [
             'item' => $item['data'],
@@ -82,7 +90,9 @@ class ItemController extends Controller
     public function edit($id_item)
     {
         $url = config('app.guzzle_url') . '/items/' . $id_item;
-        $item = Http::get($url);
+        $item = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->get($url);
         $colors = explode(', ', $item['data']['color']);
 
         return view('item.edit', [
@@ -101,11 +111,14 @@ class ItemController extends Controller
     public function update(Request $request, $id_item)
     {
         $url = config('app.guzzle_url') . '/items/' . $id_item;
-        $response = Http::patch($url, [
+        $response = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->patch($url, [
             'name' => $request->name,
             'category' => $request->category,
             'color' => $request->color,
             'price' => $request->price,
+
         ]);
 
         if ($response->serverError()) {
@@ -130,7 +143,10 @@ class ItemController extends Controller
     public function destroy($id_item)
     {
         $url = config('app.guzzle_url') . '/items/' . $id_item;
-        $delete = Http::delete($url);
+        $delete = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->delete($url);
+
         return redirect()->route('item.index', [
             'delete' => $delete,
         ])->with('message', $delete->json()['meta']['message']);

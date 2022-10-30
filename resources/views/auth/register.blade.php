@@ -1,10 +1,16 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="vh-100">
+    <div class="vh-100" style="background: linear-gradient(to bottom, rgba(255, 255, 255, 0.6) 0%, rgba(255, 255, 255, 0.6) 75%), url('/img/background.jpg');">
         <div class="container py-5 h-90">
-        <div class="row d-flex justify-content-center align-items-center h-100">
-            <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-8 col-lg-6 col-xl-5">
+                @if (session()->has('message'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ session('message') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                @endif
             <div class="card text-white" style="border-radius: 1rem; background-color: #242F40;">
                 <div class="card-body p-5">
 
@@ -23,18 +29,6 @@
                             <input id="name" type="text" class="form-control form-control-lg @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
 
                             @error('name')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-
-                        </div>
-
-                        <div class="form-group mb-4">
-                            <label class="form-label" for="username">{{ __('Username') }}</label>
-                            <input id="username" type="text" class="form-control form-control-lg @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
-
-                            @error('username')
                             <span class="invalid-feedback" role="alert">
                                 <strong>{{ $message }}</strong>
                             </span>
@@ -64,11 +58,6 @@
                             </span>
                             @enderror
 
-                        </div>
-
-                        <div class="form-group mb-4">
-                            <label class="form-label" for="password-confirm">{{ __('Confirm Password') }}</label>
-                            <input id="password-confirm" type="password" class="form-control form-control-lg" name="password_confirmation" required autocomplete="new-password">
                         </div>
 
                         {{-- button sign up --}}

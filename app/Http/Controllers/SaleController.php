@@ -16,7 +16,9 @@ class SaleController extends Controller
     public function index()
     {
         $url_sales = config('app.guzzle_url') . "/sales";
-        $sales = Http::get($url_sales);
+        $sales = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->get($url_sales);
 
         // return $sales;
 
@@ -33,10 +35,14 @@ class SaleController extends Controller
     public function create()
     {
         $url_customer = config('app.guzzle_url') . "/customers";
-        $customers = Http::get($url_customer);
+        $customers = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->get($url_customer);
 
         $url_item = config('app.guzzle_url') . "/items";
-        $items = Http::get($url_item);
+        $items = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->get($url_item);
 
         return view('sales.create', [
             'customers' => $customers,
@@ -53,7 +59,9 @@ class SaleController extends Controller
     public function store(Request $request)
     {
         $url = config('app.guzzle_url') . "/sales";
-        $response = Http::post($url, [
+        $response = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->post($url, [
             'customer_id'   => $request->customer_id,
             'date'          => $request->date,
             'qty'           => $request->qty,
@@ -76,14 +84,20 @@ class SaleController extends Controller
     public function show($id_sale)
     {
         $url = config('app.guzzle_url') . '/sales/' . $id_sale;
-        $sales = Http::get($url);
+        $sales = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->get($url);
 
         $url_item = config('app.guzzle_url') . '/items';
-        $items = Http::get($url_item);
+        $items = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->get($url_item);
 
         $id_customer = $sales['data']['customer_id'];
         $url_customer = config('app.guzzle_url') . '/customers/' . $id_customer;
-        $customer_name = Http::get($url_customer)['data']['name'];
+        $customer_name = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->get($url_customer)['data']['name'];
 
         return view('sales.show', [
             'sales' => $sales,
@@ -102,15 +116,20 @@ class SaleController extends Controller
     {
 
         $url_sale = config('app.guzzle_url') . "/sales/" . $id_sale;
-        $sales = Http::get($url_sale);
-
+        $sales = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->get($url_sale);
 
         $url_customer = config('app.guzzle_url') . "/customers";
-        $customers = Http::get($url_customer);
+        $customers = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->get($url_customer);
         // dd($customers['customer']);
 
         $url_item = config('app.guzzle_url') . "/items";
-        $items = Http::get($url_item);
+        $items = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->get($url_item);
 
         return view('sales.edit', [
             'sales'         => $sales['data'],
@@ -129,7 +148,9 @@ class SaleController extends Controller
     public function update(Request $request, $id_sale)
     {
         $url = config('app.guzzle_url') . "/sales/" . $id_sale;
-        $response = Http::patch($url, [
+        $response = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->patch($url, [
             'customer_id'   => $request->customer_id,
             'date'          => $request->date
         ]);
@@ -150,7 +171,9 @@ class SaleController extends Controller
     public function destroy($id_sale)
     {
         $url = config('app.guzzle_url') . "/sales/" . $id_sale;
-        $response = Http::delete($url);
+        $response = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->delete($url);
 
         return redirect()->route('sale.index', [
             'response'  => $response

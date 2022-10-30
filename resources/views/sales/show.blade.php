@@ -23,8 +23,9 @@
                                 <th>Item</th>
                                 <th>Color</th>
                                 <th>Price</th>
-                                <th>Qty</th>
-                                <th>Action</th>
+                                <th>Quantity</th>
+                                <th>Price</th>
+                                <th colspan="2">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -44,6 +45,11 @@
                                     @endforeach
                                 </th>
                                 <th>{{ $item_sale['qty'] }}</th>
+                                <th>
+                                    @foreach ($items['data'] as $item)
+                                    {{ $item_sale['item_id'] === $item['id_item'] ? $item['price'] : '' }}
+                                    @endforeach
+                                </th>
                                 <th>
                                     <div class="row justify-content-center">
                                         <div class="col">

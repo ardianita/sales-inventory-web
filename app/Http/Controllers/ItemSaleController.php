@@ -10,10 +10,14 @@ class ItemSaleController extends Controller
     public function create($id_sale)
     {
         $url_sale = config('app.guzzle_url') . '/sales/' . $id_sale;
-        $sales = Http::get($url_sale);
+        $sales = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->get($url_sale);
 
         $url_item = config('app.guzzle_url') . '/items';
-        $items = Http::get($url_item);
+        $items = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->get($url_item);
 
         return view('sales.item-sale.create', [
             'sales' => $sales,
@@ -25,7 +29,9 @@ class ItemSaleController extends Controller
     public function store(Request $request, $id_sale)
     {
         $url = config('app.guzzle_url') . "/sales/" . $id_sale . '/item-sales';
-        $response = Http::post($url, [
+        $response = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->post($url, [
             'sale_id' => $request->id_sale,
             'item_id' => $request->item_id,
             'color' => $request->color,
@@ -50,10 +56,14 @@ class ItemSaleController extends Controller
     {
 
         $url_sale = config('app.guzzle_url') . '/sales/' . $id_sale;
-        $sales = Http::get($url_sale)['data'];
+        $sales = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->get($url_sale)['data'];
 
         $url_item = config('app.guzzle_url') . '/items/' . $id;
-        $items = Http::get($url_item)['data'];
+        $items = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->get($url_item)['data'];
 
         return view('sales.item-sale.edit', [
             'sales' => $sales,
@@ -66,7 +76,9 @@ class ItemSaleController extends Controller
     {
 
         $url = config('app.guzzle_url') . "/sales/" . $id_sale . '/item-sales/' . $id;
-        $response = Http::patch($url, [
+        $response = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->patch($url, [
             'sale_id' => $request->id_sale,
             'item_id' => $request->id,
             'color' => $request->color,
@@ -82,10 +94,14 @@ class ItemSaleController extends Controller
     public function destroy($id_sale, $id)
     {
         $url = config('app.guzzle_url') . "/sales/" . $id_sale . '/item-sales/' . $id;
-        $response = Http::delete($url);
+        $response = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->delete($url);
 
         $url_sales = config('app.guzzle_url') . "/sales";
-        $sales = Http::get($url_sales)['data'];
+        $sales = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->get($url_sales)['data'];
 
         if (array_search($id_sale, array_column($sales, 'id_sale')) === FALSE) {
             return redirect()->route('sale.index', [
