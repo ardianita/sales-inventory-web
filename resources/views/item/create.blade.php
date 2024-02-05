@@ -53,19 +53,17 @@
                             {{-- Color --}}
                             <div class="col">
                                 <label style="color :#ECF2F0" for="color">Color</label>
-                                <div class="form-check">
-                                    <label style="color :#ECF2F0"><input type="checkbox" class="form-check-input @error('color') is-invalid @enderror" name="color[]" value="Black"> Black</label><br>
-                                    <label style="color :#ECF2F0"><input type="checkbox" class="form-check-input @error('color') is-invalid @enderror" name="color[]" value="Pink"> Pink</label><br>
-                                    <label style="color :#ECF2F0"><input type="checkbox" class="form-check-input @error('color') is-invalid @enderror" name="color[]" value="White"> White</label><br>
-                                    <label style="color :#ECF2F0"><input type="checkbox" class="form-check-input @error('color') is-invalid @enderror" name="color[]" value="Red"> Red</label><br>
-                                    <label style="color :#ECF2F0"><input type="checkbox" class="form-check-input @error('color') is-invalid @enderror" name="color[]" value="Yellow"> Yellow</label>
-
-                                    @error('color')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                    @enderror
-                                </div>
+                                <select name="color_id" class="form-select" required>
+                                    <option selected>SELECT COLOR</option>
+                                    @foreach ($colors['data'] as $color)
+                                    <option value="{{ $color['id'] }}">{{ $color['name'] }}</option>
+                                    @endforeach
+                                </select>
+                                @error('color_id')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                                @enderror
                             </div>
                         </div>
 

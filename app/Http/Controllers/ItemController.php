@@ -15,6 +15,8 @@ class ItemController extends Controller
             'Authorization' => session('token')
         ])->get($url);
 
+        // dd($items['data'][0]['color']['name']);
+
         return view('item.index', [
             'items' => $items,
         ]);
@@ -27,7 +29,14 @@ class ItemController extends Controller
      */
     public function create()
     {
-        return view('item.create');
+        $url = config('app.guzzle_url') . '/colors';
+        $colors =  Http::withHeaders([
+            'Authorization' => session('token')
+        ])->get($url);
+
+        return view('item.create', [
+            'colors' => $colors,
+        ]);
     }
 
     /**
@@ -42,10 +51,10 @@ class ItemController extends Controller
 
         $response = Http::withHeaders([
             'Authorization' => session('token')
-        ])->get($url, [
+        ])->post($url, [
             'name' => $request->name,
             'category' => $request->category,
-            'color' => $request->color,
+            'color_id' => $request->color_id,
             'price' => $request->price,
 
         ]);
@@ -72,12 +81,12 @@ class ItemController extends Controller
     public function show($id_item)
     {
         $url = config('app.guzzle_url') . '/items/' . $id_item;
-        $item = Http::withHeaders([
+        $items = Http::withHeaders([
             'Authorization' => session('token')
         ])->get($url);
 
         return view('item.show', [
-            'item' => $item['data'],
+            'item' => $items['data'],
         ]);
     }
 
@@ -93,7 +102,11 @@ class ItemController extends Controller
         $item = Http::withHeaders([
             'Authorization' => session('token')
         ])->get($url);
-        $colors = explode(', ', $item['data']['color']);
+
+        $url_color = config('app.guzzle_url') . '/colors';
+        $colors = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->get($url_color);
 
         return view('item.edit', [
             'item' => $item['data'],
@@ -111,14 +124,14 @@ class ItemController extends Controller
     public function update(Request $request, $id_item)
     {
         $url = config('app.guzzle_url') . '/items/' . $id_item;
+
         $response = Http::withHeaders([
             'Authorization' => session('token')
         ])->patch($url, [
             'name' => $request->name,
             'category' => $request->category,
-            'color' => $request->color,
+            'color_id' => $request->color_id,
             'price' => $request->price,
-
         ]);
 
         if ($response->serverError()) {

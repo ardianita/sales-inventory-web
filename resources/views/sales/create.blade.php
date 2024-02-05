@@ -40,7 +40,7 @@
                     </div>
                 </div>
                 <div class="row mb-3 mx-5">
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <label class="form-label" style="color :#ECF2F0">Item</label>
                         <select name="item_id" class="form-select" required>
                             <option selected>SELECT ITEM</option>
@@ -56,17 +56,7 @@
                         </span>
                         @enderror
                     </div>
-                    <div class="col-md-4">
-                        <label class="form-label" style="color :#ECF2F0">Color</label>
-                        <input type="text" class="form-control @error('color') is-invalid @enderror" name="qty" value="{{ old('color') }}" required>
-
-                        @error('color')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                        @enderror
-                    </div>
-                    <div class="col-md-4">
+                    <div class="col-md-6">
                         <label class="form-label" style="color :#ECF2F0">Quantity</label>
                         <input type="number" class="form-control @error('qty') is-invalid @enderror" name="qty" value="{{ old('qty') }}" required>
 

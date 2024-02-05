@@ -24,7 +24,6 @@
                                 <th>Color</th>
                                 <th>Price</th>
                                 <th>Quantity</th>
-                                <th>Price</th>
                                 <th colspan="2">Action</th>
                             </tr>
                         </thead>
@@ -37,7 +36,7 @@
                                     @endforeach
                                 </th>
                                 <th>@foreach ($items['data'] as $item)
-                                    {{ $item_sale['item_id'] === $item['id_item'] ? $item['color'] : '' }}
+                                    {{ $item_sale['item_id'] === $item['id_item'] ? $item['color']['name'] : '' }}
                                     @endforeach
                                 </th>
                                 <th>@foreach ($items['data'] as $item)
@@ -45,11 +44,6 @@
                                     @endforeach
                                 </th>
                                 <th>{{ $item_sale['qty'] }}</th>
-                                <th>
-                                    @foreach ($items['data'] as $item)
-                                    {{ $item_sale['item_id'] === $item['id_item'] ? $item['price'] : '' }}
-                                    @endforeach
-                                </th>
                                 <th>
                                     <div class="row justify-content-center">
                                         <div class="col">

@@ -65,10 +65,15 @@ class ItemSaleController extends Controller
             'Authorization' => session('token')
         ])->get($url_item)['data'];
 
+        $url_color = config('app.guzzle_url') . '/colors';
+        $colors = Http::withHeaders([
+            'Authorization' => session('token')
+        ])->get($url_color)['data'];
+
         return view('sales.item-sale.edit', [
             'sales' => $sales,
             'items' => $items,
-            'colors' => explode(', ', $items['color']),
+            'colors' => $colors,
         ]);
     }
 
@@ -81,7 +86,6 @@ class ItemSaleController extends Controller
         ])->patch($url, [
             'sale_id' => $request->id_sale,
             'item_id' => $request->id,
-            'color' => $request->color,
             'qty' => $request->qty,
         ]);
 
