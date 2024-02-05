@@ -31,7 +31,7 @@
                         <th>{{ $item['id_item'] }}</th>
                         <th>{{ $item['name'] }}</th>
                         <th>{{ $item['category'] }}</th>
-                        <th>{{ $item['color'] }}</th>
+                        <th>{{ $item['color']['name'] }}</th>
                         <th>{{ $item['price'] }}</th>
                         <th>
                             <div class="row justify-content-center">
