@@ -81,7 +81,7 @@ class SaleController extends Controller
      * @param  \App\Models\Sale  $sale
      * @return \Illuminate\Http\Response
      */
-    public function show($id_sale)
+    public function show(string $id_sale)
     {
         $url = config('app.guzzle_url') . '/sales/' . $id_sale;
         $sales = Http::withHeaders([

@@ -27,7 +27,7 @@
                     @forelse ($sales['data'] as $sale)
                     <tr>
                         <th>{{ $sale['id_sale'] }}</th>
-                        <th>{{ $sale['customer']['name'] }}</th>
+                        <th>{{ $sale['customers']['name'] }}</th>
                         <th>{{ $sale['date'] }}</th>
                         <th>{{ $sale['subtotal'] }}</th>
                         <th>
@@ -54,7 +54,7 @@
                                 </div>
                                 <div class="modal-body text-center p-3" style="font-size: 18px">
                                     <span>Are you sure you want to delete </span>
-                                    <span><strong>{{$sale['id_sale']}}</strong> by <strong>{{ $sale['customer']['name'] }}</strong> ?</span>
+                                    <span><strong>{{$sale['id_sale']}}</strong> by <strong>{{ $sale['customers']['name'] }}</strong> ?</span>
                                 </div>
 
                                 <div class="modal-footer border-0 mx-auto">
